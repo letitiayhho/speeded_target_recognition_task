@@ -1,0 +1,16 @@
+% Clear the workspace and the screen
+sca;
+close all;
+clearvars;
+
+% Add paths
+addpath('functions');
+addpath('stim');
+
+%% Test trial
+% Here we call some default settings for setting up Psychtoolbox
+ptb = init_psychtoolbox(FS);
+
+%% End
+sca; % screen clear all
+PsychPortAudio('Close'); % clear audio handles

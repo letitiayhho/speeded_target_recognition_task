@@ -6,8 +6,9 @@ close all;
 sca;
 
 % Constants
-addpath('~/src/speeded_target_identification/functions')
-addpath('~/src/speeded_target_identification/stim/test_words')
+cd('~/src/speeded_target_identification/')
+addpath('functions')
+addpath('stim/test_words')
 Fs = 44100;
 
 % Load stim

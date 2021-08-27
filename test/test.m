@@ -1,24 +1,28 @@
-% Clear the workspace and the screen
-sca;
-close all;
-clearvars;
-
-% Add constants
+%% Set up
 cd('~/src/speeded_target_identification/')
 addpath('functions')
 addpath('stim/test_words')
-Fs = 44100;
-ptb = init_psychtoolbox(Fs);
-BLOCK = 0;
 
-%% Test present_stimulus.m
-% stim = 'stim/test_words/clock_f.wav';
-% present_stimulus(stim, BLOCK, ptb); % trigger sent here
+% Add constants
+Fs = 44100;
+BLOCK = 0;
+ptb = init_psychtoolbox(Fs);
+
+%% Test present_stimulus.m once
+% stim = get_filepaths('stim/test_words');
+% fixation(ptb);
+% present_stimulus(stim{1}, BLOCK, ptb); % trigger sent here
 
 %% Test present_stimulus.m multiple times
-stim = dir('stim/test_words/*.wav'); % NEED FULL FILE PATH
-stim = {stim(:).name};
+stim = get_filepaths('stim/test_words');
 for s = 1:length(stim)
+%     % Break if ESC is pressed
+%     [keyIsDown, keysecs, keyCode] = KbCheck;
+%     if keyCode(KBName('escape'))
+%         SCREEN('CloseAll');
+%         break;
+%     end
+    
     fixation(ptb); % shows fixation cross to start trial
     present_stimulus(stim{s}, BLOCK, ptb); % trigger sent here
 %     response = ask_for_response(ptb);

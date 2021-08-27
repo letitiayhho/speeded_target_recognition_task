@@ -1,14 +1,9 @@
 %% Set up
-
-% Clear the workspace
-clearvars;
-close all;
-sca;
-
-% Constants
 cd('~/src/speeded_target_identification/')
 addpath('functions')
 addpath('stim/test_words')
+
+% Constants
 Fs = 44100;
 
 %% Test John's code

@@ -37,6 +37,6 @@ starttime = PsychPortAudio('Start', ptb.pahandle, 1, t0, 1);
 [actualStartTime, ~, ~, estStopTime] = PsychPortAudio('Stop', ptb.pahandle, 1, 1); % NEEDS 1, 1, at the end here
 
 %% End
-clearvars;
+sca; % screen clear all
 close all;
-sca;
+clearvars;

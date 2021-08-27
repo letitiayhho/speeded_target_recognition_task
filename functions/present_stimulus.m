@@ -10,7 +10,7 @@ function present_stimulus(stim, block, ptb)
     t0 = GetSecs + .001;
     PsychPortAudio('Start', ptb.pahandle, 1, t0, 1);
     WaitSecs(.001); %length of 1 ms
-    send_trigger(block);
+%     send_trigger(block); FIX THIS
     WaitSecs(1);
     [actualStartTime, ~, ~, estStopTime] = PsychPortAudio('Stop', ptb.pahandle, 1, 1);
 end

@@ -21,10 +21,10 @@ ptb = init_psychtoolbox(Fs);
 stim = get_filepaths('stim/test_words');
 fixation(ptb); % shows fixation cross to start trial
 for s = 1:length(stim)
-    [stim_start, stim_end] = present_stimulus(stim{s}, BLOCK, ptb); % trigger sent here
+    [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim{s}, BLOCK, ptb); % trigger sent here
 %     response = ask_for_response(ptb);
 %     fprintf(response)
-    write_output(SUBJ_NUM, BLOCK, s, stim{s}, stim_start, stim_end);
+    write_output(SUBJ_NUM, BLOCK, s, stim{s}, stim_start, stim_end, pressed, rt, resp);
 %     if training
 %         give_feedback(stimuli{s}, ptb); % another trigger (7) sent here
 %     end

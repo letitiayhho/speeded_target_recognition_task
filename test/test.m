@@ -11,20 +11,20 @@ BLOCK = 0;
 ptb = init_psychtoolbox(Fs);
 
 %% Test present_stimulus.m once
-stim = get_filepaths('stim/test_words');
-fixation(ptb);
-present_stimulus(stim{1}, BLOCK, ptb); % trigger sent here
-response = ask_for_response(ptb);
-fprintf(response)
+% stim = get_filepaths('stim/test_words');
+% fixation(ptb);
+% present_stimulus(stim{1}, BLOCK, ptb); % trigger sent here
+% response = ask_for_response(ptb);
+% fprintf(response)
 
 %% Test present_stimulus.m multiple times
 stim = get_filepaths('stim/test_words');
+fixation(ptb); % shows fixation cross to start trial
 for s = 1:length(stim)
-    fixation(ptb); % shows fixation cross to start trial
-    present_stimulus(stim{s}, BLOCK, ptb); % trigger sent here
-    response = ask_for_response(ptb);
-    fprintf(response)
-    write_output(SUBJ_NUM, BLOCK, s, stim{s}, response);
+    [stim_start, stim_end] = present_stimulus(stim{s}, BLOCK, ptb); % trigger sent here
+%     response = ask_for_response(ptb);
+%     fprintf(response)
+    write_output(SUBJ_NUM, BLOCK, s, stim{s}, stim_start, stim_end);
 %     if training
 %         give_feedback(stimuli{s}, ptb); % another trigger (7) sent here
 %     end

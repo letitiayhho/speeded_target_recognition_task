@@ -1,16 +1,16 @@
-function write_output(subject, block, trial, stim, resp)
+function write_output(subject, block, trial, stim, stim_start, stim_end)
 
     % get output filename for this subject and black
     fpath = ['output/subj' num2str(subject) 'block' num2str(block) '.csv'];
 
     fname = regexp(stim, '[a-zA-Z]+.wav', 'match');
     word = fname{1}(1:end-4);
-    row = {num2str(subject), num2str(block), num2str(trial), word, resp};
+    row = {num2str(subject), num2str(block), num2str(trial), word, num2str(stim_start), num2str(stim_end)};
     row = strjoin(row, ',');
     row = ['\n' row];
     
     if ~(exist(fpath, 'file') == 2) % ~isfile(fpath) in later versions
-        cols = 'subject,block,trial,word,response';
+        cols = 'subject,block,trial,word,stim_start,stim_end';
         row = [cols row];
         f = fopen(fpath, 'wt'); 
         fprintf(f, row);

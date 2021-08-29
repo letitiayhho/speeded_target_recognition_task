@@ -13,6 +13,9 @@ function ptb = init_psychtoolbox(Fs)
     Screen('TextSize', window, 32);
     ptb.window = window;
     
+    %% Keyboard setup
+    ptb.keyboard = GetKeyboardIndices;
+    
     %% Audio set up
     InitializePsychSound(1); % argument of 1 gets you really nice latencies   
     ptb.pahandle = PsychPortAudio('Open', [], 1, 1, Fs, 2); % MIGHT HAVE TO ADJUST THIS

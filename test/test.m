@@ -5,10 +5,11 @@ addpath('stim/test_words')
 PsychJavaTrouble(1);
 
 % Add constants
-Fs = 44100;
+FS = 44100;
 SUBJ_NUM = 0;
 BLOCK = 0;
-ptb = init_psychtoolbox(Fs);
+ptb = init_psychtoolbox(FS);
+TRAINING = true;
 
 %% Test present_stimulus.m once
 % stim = get_filepaths('stim/test_words');
@@ -22,12 +23,7 @@ stim = get_filepaths('stim/test_words');
 fixation(ptb); % shows fixation cross to start trial
 for s = 1:length(stim)
     [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim{s}, BLOCK, ptb); % trigger sent here
-%     response = ask_for_response(ptb);
-%     fprintf(response)
     write_output(SUBJ_NUM, BLOCK, s, stim{s}, stim_start, stim_end, pressed, rt, resp);
-%     if training
-%         give_feedback(stimuli{s}, ptb); % another trigger (7) sent here
-%     end
 end
 
 %% End

@@ -12,7 +12,7 @@ stim = 'clock_f.wav';
 %% Test init_psychtoolbox()
 
 % Initialize sound with init_psychtoolbox()
-ptb = init_psychtoolbox(Fs);
+ptb = init_psychtoolbox(Fs);x
 
 % Innards of init_psychtoolbox
 % InitializePsychSound(1);
@@ -26,7 +26,7 @@ ptb = init_psychtoolbox(Fs);
 % % [actualStartTime, ~, ~, estStopTime] = PsychPortAudio('Stop', ptb.pahandle, 1, 1);
 
 % Johns version
-present_stimulus(stim, BLOCK, ptb);
+[stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, BLOCK, ptb);
 
 % Innards of Johns version
 % PsychPortAudio('FillBuffer', ptb.pahandle, [aud'; aud']);
@@ -36,5 +36,5 @@ present_stimulus(stim, BLOCK, ptb);
 
 %% End
 sca; % screen clear all
-close all;
-clearvars;
+% close all;
+% clearvars;

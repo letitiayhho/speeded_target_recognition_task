@@ -12,7 +12,7 @@ stim = 'clock_f.wav';
 %% Test init_psychtoolbox()
 
 % Initialize sound with init_psychtoolbox()
-ptb = init_psychtoolbox(Fs);x
+ptb = init_psychtoolbox(Fs);
 
 % Innards of init_psychtoolbox
 % InitializePsychSound(1);

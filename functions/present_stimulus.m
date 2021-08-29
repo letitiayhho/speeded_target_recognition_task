@@ -10,13 +10,11 @@ function [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, bloc
     WaitSecs(.5 + jitter);
 
     % start collecting response
-    ListenChar(2);
-    keyList = zeros(256, 1);
+    keyList = zeros(256, 1); % allow only certain keys
     keyList(6:7) = 1;
-    kbQueueCreate(ptb.keyboard, keyList);
-    KbQueueCreate;
+    KbQueueCreate(ptb.keyboard, keyList);
+    ListenChar(2);
     KbQueueStart;
-%     RestrictKeysForKbCheck([6, 7]); % test this, doesn't work
     
     % play audio
     t0 = GetSecs + .001;
@@ -31,9 +29,10 @@ function [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, bloc
     [stim_start, ~, ~, stim_end] = PsychPortAudio('Stop', ptb.pahandle, 1, 1);
    
     % Collect response
-    [pressed, firstPress] = KbQueueCheck;
-    rt = firstPress;
-    resp = KbName(firstPress);
+    [pressed, rt] = KbQueueCheck;
+    resp = KbName(rt);
+    [rt, I] = min(rt(rt > 0)); % keep only first response
+    resp = char(resp(I));
     KbQueueStop;
     KbQueueRelease;
     ListenChar(0); % renables matlab command window

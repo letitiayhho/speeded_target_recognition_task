@@ -19,11 +19,14 @@ TRAINING = true;
 % fprintf(response)
 
 %% Test present_stimulus.m multiple times
-stim = get_filepaths('stim/test_words');
+[fullpath, filename] = get_filepaths('stim/test_words');
 fixation(ptb); % shows fixation cross to start trial
-for s = 1:length(stim)
-    [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim{s}, BLOCK, ptb); % trigger sent here
-    write_output(SUBJ_NUM, BLOCK, s, stim{s}, stim_start, stim_end, pressed, rt, resp);
+for s = 1:length(fullpath)
+    [stim_start, stim_end, pressed, rt, resp] = present_stimulus(fullpath{s}, BLOCK, ptb); % trigger sent here
+    write_output(SUBJ_NUM, BLOCK, s, filename{s}, stim_start, stim_end, pressed, rt, resp);
+    if training
+        give_feedback(filename{s}, resp, ptb);
+    end
 end
 
 %% End

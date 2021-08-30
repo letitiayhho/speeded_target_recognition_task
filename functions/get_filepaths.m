@@ -1,12 +1,12 @@
-function [filepaths] = get_filepaths(path)
+function [fullpath, filename] = get_filepaths(path)
 
     all_files = dir(fullfile(path, '*.wav'));
     folders = {all_files(:).folder};
-    names = {all_files(:).name};
-    filepaths = {};
+    filename = {all_files(:).name};
+    fullpath = {};
     
     for i = 1:length(all_files)
-        filepaths{i} = char(strcat(folders(i), '/', names(i)));
+        fullpath{i} = char(strcat(folders(i), '/', filename(i)));
     end
     
 end

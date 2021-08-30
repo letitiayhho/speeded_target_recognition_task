@@ -26,7 +26,7 @@ for s = 1:length(fullpath)
     correct = check_answer(word{s}, resp);
     write_output(SUBJ_NUM, BLOCK, s, word{s}, stim_start, stim_end, pressed, rt, resp, correct);
     if training
-        give_feedback(word{s}, resp, ptb);
+        give_feedback(correct, ptb);
     end
 end
 

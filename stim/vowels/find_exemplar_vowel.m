@@ -9,7 +9,7 @@ function find_exemplar_vowel(subject_number)
     f1 = raw.f1;
     f2 = raw.f2;
     df = table(vowel, f1, f2);
-    vowels = unique(vowel);
+    vowels = unique(vowel, 'stable');
     clear raw vowel f1 f2
     
     % Identify the mean f1 and f2 for each vowel, the prototype

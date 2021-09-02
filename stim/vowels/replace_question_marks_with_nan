@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -xeuo pipefail
+
+SUBJECT_NUMBER=$1
+file="subj${SUBJECT_NUMBER}/subj${SUBJECT_NUMBER}-1.txt"
+sed -i '' 's/?/NaN/g' "$file"
+less $file

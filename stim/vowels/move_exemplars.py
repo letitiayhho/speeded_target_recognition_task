@@ -4,7 +4,7 @@ import sys
 import shutil
 
 def move_exemplars(subject_number):
-    subject_dir = Path("S_" + subject_number)
+    subject_dir = Path("subj" + subject_number)
     with open(subject_dir / "prototypicality_rankings.txt") as f:
         f.readline()  # strip header
         df = [
@@ -13,11 +13,11 @@ def move_exemplars(subject_number):
         ]
 
     for row in df:
-        vowel, _, _, _, rank, filename = row
+        vowel, _, _, filename, _, rank = row
         if rank != "1":
             continue
         shutil.copy2(
-            subject_dir / filename,
+            subject_dir / "all_vowels" / filename,
             subject_dir / "exemplars" / f"{vowel}.wav",
         )
 

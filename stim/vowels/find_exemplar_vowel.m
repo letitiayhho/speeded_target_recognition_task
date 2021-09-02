@@ -1,8 +1,8 @@
 function find_exemplar_vowel(subject_number)
     % Load data
     cd ~/src/speeded_target_identification/stim/vowels/
-    subject_dir = "S_" + subject_number;
-    raw = tdfread(fullfile(subject_dir, 'subj' + subject_number + '-1.txt'));
+    subject_dir = "subj" + subject_number;
+    raw = readtable(fullfile(subject_dir, subject_dir + "-1.txt"), 'ReadVariableNames', true);
 
     % Create a data frame with f1 and f2
     vowel = cellstr(raw.Type);

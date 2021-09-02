@@ -11,9 +11,16 @@ function find_exemplar_vowel(subject_number)
     df = table(vowel, f1, f2);
     vowels = unique(vowel);
     clear raw vowel f1 f2
-
+    
     % Identify the mean f1 and f2 for each vowel, the prototype
     prototypes = grpstats(df, 'vowel');
+    
+    % Construct filename
+    order = repmat([""; num2str((1:9)')], 7, 1);
+    df.filename = strcat(char(df.vowel), order, ".wav");
+    
+    % Drop rows containing NaN
+    df(any(ismissing(df),2), :) = [];
 
     % Find distance between each utterance and the prototype
     df.d = zeros(size(df, 1), 1);
@@ -35,10 +42,6 @@ function find_exemplar_vowel(subject_number)
         rank = [rank; tiedrank(distances)];
     end
     df.rank = rank;
-
-    % Construct filename
-    order = repmat([""; num2str((1:9)')], 7, 1);
-    df.filename = strcat(char(df.vowel), order, ".wav");
 
     % Save
     writetable(df, fullfile(subject_dir, 'prototypicality_rankings.txt'))

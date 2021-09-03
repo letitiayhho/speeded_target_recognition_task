@@ -1,0 +1,13 @@
+subj9	talker1
+subj10	talker2
+subj13	
+subj15	talker3
+subj16	talker4
+subj17	talker5
+subj18	talker6
+subj19	talker7
+subj20	talker8
+subj21	talker9
+subj22	talker10
+subj23	talker11
+subj24	talker12

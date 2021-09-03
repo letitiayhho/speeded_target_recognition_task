@@ -15,4 +15,4 @@ distractors = possible_distractors(randi(length(possible_distractors), 1, 16));
 distractors(datasample([1:16], 4)) = target;
 
 % Generate filenames
-stim = distractors + ".wav";
+vowel_order = distractors + ".wav";

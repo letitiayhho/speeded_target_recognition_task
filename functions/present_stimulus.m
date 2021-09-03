@@ -23,7 +23,7 @@ function [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, bloc
     % send trigger
 %     WaitSecs(.001); %length of 1 ms
 %     send_trigger(block); FIX THIS
-%     WaitSecs(1);
+%     WaitSecs(.001);??? do I need this?
         
     % stop audio
     [stim_start, ~, ~, stim_end] = PsychPortAudio('Stop', ptb.pahandle, 1, 1);
@@ -33,7 +33,11 @@ function [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, bloc
     resp = KbName(rt);
     [rt, I] = min(rt(rt > 0)); % keep only first response
     resp = char(resp(I));
+    
+    % Wait
+    WaitSecs(0.250);
     KbQueueStop;
     KbQueueRelease;
     ListenChar(0); % renables matlab command window
+    
 end

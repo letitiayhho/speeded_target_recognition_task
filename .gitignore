@@ -1,7 +1,9 @@
-stim/s*
+create-stim/s*
 
 archive
 
 notes
 
 *.DS_Store
+
+*~

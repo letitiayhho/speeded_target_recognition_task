@@ -4,10 +4,6 @@ function [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, bloc
     % load contents of .wav file into buffer
     [aud, ~] = audioread(stim);
     PsychPortAudio('FillBuffer', ptb.pahandle, [aud'; aud']);
-    
-    % inter-trial interval
-    jitter = rand/5 - .1; % -100 to +100 ms uniform jitter
-    WaitSecs(.5 + jitter);
 
     % start collecting response
     keyList = zeros(256, 1); % allow only certain keys
@@ -23,10 +19,6 @@ function [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, bloc
     % send trigger
 %     WaitSecs(.001); %length of 1 ms
 %     send_trigger(block); FIX THIS
-%     WaitSecs(.001);??? do I need this?
-        
-    % stop audio
-    [stim_start, ~, ~, stim_end] = PsychPortAudio('Stop', ptb.pahandle, 1, 1);
    
     % Collect response
     [pressed, rt] = KbQueueCheck;
@@ -34,8 +26,11 @@ function [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, bloc
     [rt, I] = min(rt(rt > 0)); % keep only first response
     resp = char(resp(I));
     
-    % Wait
-    WaitSecs(0.250);
+    % stop audio
+    [stim_start, ~, ~, stim_end] = PsychPortAudio('Stop', ptb.pahandle, 1, 1);
+    
+    % inter-trial interval with jitter
+    WaitSecs(.2 + rand()*.2); % wait between 200 and 400 ms
     KbQueueStop;
     KbQueueRelease;
     ListenChar(0); % renables matlab command window

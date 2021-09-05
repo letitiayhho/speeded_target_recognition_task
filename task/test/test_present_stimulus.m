@@ -1,12 +1,11 @@
 %% Set up
-cd('~/src/speeded_target_identification/')
-addpath('functions')
-addpath('stim/test_words')
+cd('~/src/speeded_vowel_identification/')
+addpath('task/functions')
 
 % Constants
 Fs = 44100;
 BLOCK = 0;
-stim = 'clock_f.wav';
+stim = 'stim/f1/OO.wav';
 [aud, ~] = audioread(stim);
 
 %% Test init_psychtoolbox()

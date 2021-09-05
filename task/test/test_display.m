@@ -1,7 +1,6 @@
 %% Set up
-cd('~/src/speeded_target_identification/')
-addpath('functions')
-addpath('stim/test_words')
+cd('~/src/speeded_vowel_identification/')
+addpath('task/functions')
 
 % Constants
 Fs = 44100;
@@ -9,7 +8,7 @@ Fs = 44100;
 %% Test John's code
 
 % Test init_psychtoolbox()
-ptb = init_psychtoolbox(44100);
+ptb = init_psychtoolbox(Fs);
 
 % Test innards of init_psychtoolbox()
 % PsychDefaultSetup(2);

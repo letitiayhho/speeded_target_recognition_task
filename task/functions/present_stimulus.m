@@ -1,13 +1,11 @@
 function [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, block, ptb)
-    % Accepts only 'c' and 'd' key, records only the first key pressed
-
     % load contents of .wav file into buffer
     [aud, ~] = audioread(stim);
     PsychPortAudio('FillBuffer', ptb.pahandle, [aud'; aud']);
 
     % start collecting response
     KbQueueCreate(ptb.keyboard);
-    ListenChar(2);
+    ListenChar(2); % disables matlab command window
     KbQueueStart;
     
     % play audio

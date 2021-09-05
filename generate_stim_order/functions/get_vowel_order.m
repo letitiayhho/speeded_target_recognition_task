@@ -1,9 +1,12 @@
-function [vowel_order] = get_vowel_order()
+function [vowel_order, target] = get_vowel_order()
+%     arguments
+%         target 
     % List of targets and distractors
     possible_distractors = ["AE", "AH", "EE", "EH", "IH", "OO", "UH"];
     possible_targets = ["IH", "OO", "UH"];
 
     % Randomly select target
+%     if targ
     target = possible_targets(randi(length(possible_targets), 1));
 
     % Remove target from list of distractors

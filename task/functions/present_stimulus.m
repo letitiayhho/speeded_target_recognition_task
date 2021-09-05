@@ -6,9 +6,7 @@ function [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, bloc
     PsychPortAudio('FillBuffer', ptb.pahandle, [aud'; aud']);
 
     % start collecting response
-    keyList = zeros(256, 1); % allow only certain keys
-    keyList(6:7) = 1;
-    KbQueueCreate(ptb.keyboard, keyList);
+    KbQueueCreate(ptb.keyboard);
     ListenChar(2);
     KbQueueStart;
     

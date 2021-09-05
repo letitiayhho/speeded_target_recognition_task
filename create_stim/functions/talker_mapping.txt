@@ -11,3 +11,12 @@ subj21	talker9
 subj22	talker10
 subj23	talker11
 subj24	talker12
+
+
+males = 10, 17, 21
+
+subj10 m1
+subj17 m2
+
+subj9 f1
+subj15 f2

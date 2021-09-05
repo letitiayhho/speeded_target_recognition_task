@@ -1,4 +1,4 @@
-function get_full_stim_path(n_talkers)
+function [full_stim_path] = get_full_stim_path(n_talkers)
     % Get talker order
     talker_order = get_talker_order(n_talkers);
 
@@ -9,5 +9,5 @@ function get_full_stim_path(n_talkers)
     full_stim_paths = fullfile(talker_order, vowel_order);
 
     % Save to .txt file
-    writematrix(full_stim_paths, 'stim_paths.txt')
+%     writematrix(full_stim_paths, 'stim_paths.txt')
 end

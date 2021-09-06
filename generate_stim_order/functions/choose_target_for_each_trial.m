@@ -1,4 +1,4 @@
-function [vowel_order] = choose_target_for_each_trial(target)
+function [vowel_order, istarget] = choose_target_for_each_trial(target)
     % List of targets and distractors
     possible_distractors = ["AE", "AH", "EE", "EH", "IH", "OO", "UH"];
 
@@ -10,7 +10,8 @@ function [vowel_order] = choose_target_for_each_trial(target)
 
     % Replace 4 random distractors with the target
     distractors(datasample([1:16], 4)) = target;
-
-    % Generate filenames
-    vowel_order = distractors + ".wav";
+    vowel_order = distractors;
+    
+    % Generate istarget
+    istarget = vowel_order == target;
 end

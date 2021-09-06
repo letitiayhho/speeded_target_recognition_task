@@ -1,25 +1,38 @@
+sca;
+close all;
+clearvars;
+PsychPortAudio('Close'); % clear audio handles
+
 %% Set up
-cd('~/src/speeded_target_identification/')
-addpath('functions')
-addpath('stim/test_words')
+cd('~/src/speeded_vowel_identification/')
+addpath('task/functions')
 
 % Constants
 Fs = 44100;
 BLOCK = 0;
 SUBJ_NUM = 0;
 ptb = init_psychtoolbox(Fs);
-[fullpath, word] = get_filepaths('stim/test_words');
 training = true;
 
-% s = 1;
-for s = 1:length(fullpath)
-    [stim_start, stim_end, pressed, rt, resp] = present_stimulus(fullpath{s}, BLOCK, ptb); % trigger sent here
-    correct = check_answer(word{s}, resp);
-    write_output(SUBJ_NUM, BLOCK, s, word{s}, stim_start, stim_end, pressed, rt, resp, correct);
-    if training
-        give_feedback(correct, ptb);
-    end
-end
+%% Test one
+stim = 'stim/f1/OO.wav';
+target = 1;
+[stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, BLOCK, ptb); % trigger sent here
+correct = check_answer(target, resp);
+
+%% Test multiple
+% stim = readtable('generate_stim_order/output/stim_order.txt');
+% stim_path = get_filepaths(stim);
+% target = get_target(stim);
+% 
+% for s = 1:length(stim_path)
+%     [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim_path(s), BLOCK, ptb); % trigger sent here
+%     correct = check_answer(stim.target(s), resp);
+%     write_output(SUBJ_NUM, BLOCK, s, stim.vowel(s), stim_start, stim_end, pressed, rt, resp, correct);
+% %     if training
+%         give_feedback(correct, ptb);
+%     end
+% end
 
 % test check_answer and give_feedback with correct answer
 % test with incorrect answer

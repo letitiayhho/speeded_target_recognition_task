@@ -1,10 +1,12 @@
-function [talker_order] = get_talker_order(n_talkers)
-    % Possible talkers
-    talkers = "talker" + [1:12];
-
-    % Select the talkers
-    talkers = talkers(randi(length(talkers), 1, n_talkers));
-
-    % Sample from the talkers 16 times
-    talker_order = datasample(talkers, 16);
+function [block_type, talker] = get_talker_order(subject_number)
+    rng(subject_number);
+    rep_talkers = choose_talkers_for_each_rep();
+    
+    % Broadcas the chosen talkers for each rep into 16 trials
+    talker = [];
+    block_type = [];
+    for i = 1:length(rep_talkers)
+        block_type = [block_type; repmat(rep_talkers(i, 3), 16, 1)];
+        talker = [talker; datasample(rep_talkers(i, 1:2), 16)'];
+    end
 end

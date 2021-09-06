@@ -18,13 +18,13 @@ function [rt, resp] = present_stimulus(stim, ptb)
     
     % send trigger
     WaitSecs(.001); %length of 1 ms        
-    send_trigger('0');     
+    RTBox('TTL', 255)
 
     % stop audio
-    [stim_start, ~, ~, stim_end] = PsychPortAudio('Stop', ptb.pahandle, 1, 1);
+    PsychPortAudio('Stop', ptb.pahandle, 1, 1);
 
     % Collect response
-    [pressed, rt] = KbQueueCheck;
+    [~, rt] = KbQueueCheck;
     keylist = KbName(rt);
     [rt, I] = min(rt(rt > 0)); % keep only first response
     resp = char(keylist(I));

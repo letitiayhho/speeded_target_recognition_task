@@ -1,4 +1,4 @@
-function [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, ptb)
+function [rt, resp] = present_stimulus(stim, ptb)
 
     [aud, ~] = audioread(stim);
     PsychPortAudio('FillBuffer', ptb.pahandle, [aud'; aud']);
@@ -21,9 +21,10 @@ function [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, ptb)
 
     % Collect response
     [pressed, rt] = KbQueueCheck;
-    resp = KbName(rt);
+    keylist = KbName(rt);
     [rt, I] = min(rt(rt > 0)); % keep only first response
-    resp = char(resp(I));
+    resp = char(keylist(I));
+    rt = rt - stim_start;
 
     % Wait
     WaitSecs(.2 + rand()*.2);

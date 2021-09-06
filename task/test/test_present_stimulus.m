@@ -13,7 +13,7 @@ BLOCK = 0;
 stim = 'stim/f1/OO.wav';
 ptb = init_psychtoolbox(Fs);
 
-[stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim, ptb)
+[rt, resp] = present_stimulus(stim, ptb)
 % 
 % %% Test current script
 % [aud, ~] = audioread(stim);

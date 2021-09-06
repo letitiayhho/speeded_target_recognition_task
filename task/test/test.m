@@ -1,25 +1,30 @@
 %% Set up
-cd('~/src/speeded_target_identification/')
-addpath('functions')
+cd('~/src/speeded_vowel_identification/')
+addpath('task/functions')
 PsychJavaTrouble(1);
 
 % Add constants
 FS = 44100;
 SUBJ_NUM = 0;
 BLOCK = 'test';
-TRAINING = true;
+TRAINING = true; % change training depending on block number
 
-% Init psychtoolbox
+%% Load stim_order
+stim = readtable('generate_stim_order/output/stim_order.txt');
+stim_path = get_filepaths(stim);
+target = get_target(stim);
+
+%% Init psychtoolbox
 ptb = init_psychtoolbox(FS);
 
-%% Test present_stimulus.m multiple times
-[fullpath, word] = get_filepaths(fullfile('stim', BLOCK));
-fixation(ptb); % shows fixation cross to start trial
-for s = 1:length(fullpath)
-    [stim_start, stim_end, pressed, rt, resp] = present_stimulus(fullpath{s}, BLOCK, ptb); % trigger sent here
-    correct = check_answer(word{s}, resp);
-    write_output(SUBJ_NUM, BLOCK, s, word{s}, stim_start, stim_end, pressed, rt, resp, correct);
-    if training
+%% Test
+fixation(ptb); % show fixation cross to start trial
+present_target(ptb, target) % show target
+for s = 1:length(stim_path)
+    [stim_start, stim_end, pressed, rt, resp] = present_stimulus(stim_path(s), ptb); % trigger sent here
+    correct = check_answer(stim.istarget(s), resp);
+    write_output(SUBJ_NUM, BLOCK, s, stim.vowel(s), stim_start, stim_end, pressed, rt, resp, correct);
+    if TRAINING
         give_feedback(correct, ptb);
     end
 end

@@ -1,4 +1,4 @@
-block_num, type, rep, utterance, vowel, target, talker
+block_num, type, rep, utterance, vowel, istarget, talker
 1, same, 1, 1, OO, 0, f1
 1, same, 1, 2, EH, 0, f1
 1, same, 1, 3, AE, 0, f1

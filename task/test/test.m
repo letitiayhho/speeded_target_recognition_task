@@ -4,6 +4,7 @@ SUBJ_NUM = 0; % numeric
 BLOCK = 1; % numeric
 
 %%%%%%%%%%%%%%%%%%%%%%%
+
 %% Set up
 cd('~/src/speeded_vowel_identification/')
 addpath('task/functions')

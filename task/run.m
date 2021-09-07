@@ -2,19 +2,24 @@
 
 SUBJ_NUM = 0; % numeric
 BLOCK = 1; % numeric
-
+      
 %%%%%%%%%%%%%%%%%%%%%%%
+      
+PsychDebugWindowConfiguration
 
 %% Set up
 cd('~/src/speeded_vowel_identification/')
 addpath('task/functions')
+addpath('task/USTCRTBox_003')
 PsychJavaTrouble(1);
 
 % Constants
 FS = 44100;
+RTBOX = true;
 IS_TRAINING = BLOCK == 1 || BLOCK == 2; % change training depending on block number
 
-% Init psychtoolbox
+% set up psychtoolbox and RTBox
+init_RTBox(RTBOX);
 PTB = init_psychtoolbox(FS);
 
 % Load stim order
@@ -30,6 +35,7 @@ n_reps = max(STIM.rep);
 for rep = 1:n_reps
     stim_path = get_filepaths(STIM, BLOCK, rep);
     target = get_target(STIM, BLOCK, rep);
+    fprintf(1, target)
 
     % loop through all stim in rep
     fixation(PTB); % show fixation cross to start trial

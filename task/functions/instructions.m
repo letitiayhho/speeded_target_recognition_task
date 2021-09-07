@@ -10,16 +10,16 @@ function instructions(ptb, block)
         l = 9; % end of block   
     end
     
-    ListenChar(-1); % disable typing into matlab window
+%     ListenChar(-1); % disable typing into matlab window
     for i = 1:length(l)
-        fpath = ['instructions/instructions_' num2strl(i) '.txt'];
+        fpath = ['task/instructions/instructions_' num2str(i) '.txt'];
         txt = load_text_from(fpath);
         % make screen background black
         DrawFormattedText(ptb.window, txt, 'center', 'center', 1);
         Screen('Flip', ptb.window);
         KbPressWait();
     end
-    ListenChar(0); % reenable typing into matlab
+%     ListenChar(0); % reenable typing into matlab
     
 end
 

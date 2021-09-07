@@ -3,7 +3,7 @@ then played a series of vowels.
 
 When you hear the target vowel press the "t" key. If you
 hear a vowel that is not the target vowel, press the "n"
-key. A (x) symbol will appear while each vowel is playing
+key. An "x" symbol will appear while each vowel is playing
 to indicate when you may submit a response.
 
 You will need to listen carefully to each vowel as they

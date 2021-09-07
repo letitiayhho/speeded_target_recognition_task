@@ -1,2 +1,4 @@
 Welcome to the experiment.
 In this task you will be asked to identify different vowels.
+
+[Press any key to continue]

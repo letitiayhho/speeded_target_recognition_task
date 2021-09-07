@@ -7,8 +7,8 @@ function [rep_talkers] = choose_talkers_for_each_rep()
     blocked = [blocked, blocked, repmat('b', 32, 1)];
 
     % Generate mixed talker sequence
-    [mf1, mf2] = randomize_male_female_talker_pairs(male_talkers, female_talkers, 16);
-    [ff1, ff2] = randomize_female_female_talker_pairs(female_talkers, 16);
+    [mf1, mf2] = randomize_mf_talker_pairs(male_talkers, female_talkers, 16);
+    [ff1, ff2] = randomize_ff_talker_pairs(female_talkers, 16);
     mixed = [mf1, mf2, repmat('mf', 16, 1); ff1, ff2, repmat('ff', 16, 1)];
     mixed = mixed(randperm(length(mixed)), :);
 
@@ -26,6 +26,19 @@ function [rep_talkers] = choose_talkers_for_each_rep()
         block_types.(block_order(3))(17:32, :);...
         block_types.(block_order(4))(17:32, :)];
     
+    % Generate training
+    blocked = randomize_talker([male_talkers, female_talkers], 2);
+    blocked = [blocked, blocked, repmat('b', 2, 1)];
+    [mf1, mf2] = randomize_mf_talker_pairs(male_talkers, female_talkers, 2);
+    [ff1, ff2] = randomize_ff_talker_pairs(female_talkers, 2);
+    mf = [mf1, mf2, repmat('mf', 2, 1)];
+    ff = [ff1, ff2, repmat('ff', 2, 1)];
+    training_talkers = [blocked(1,:); ff(1,:); mf(1,:);...
+        blocked(2,:); ff(2,:); mf(2,:)];
+
+    % Combine with regular reps
+    rep_talkers = [training_talkers; rep_talkers];
+        
     function [seq] = randomize_talker(talkers, n_trials)
         n_talkers = length(talkers);
         passes = floor(n_trials/n_talkers);
@@ -38,12 +51,12 @@ function [rep_talkers] = choose_talkers_for_each_rep()
         seq = seq';
     end
 
-    function [seq1, seq2] = randomize_male_female_talker_pairs(male_talkers, female_talkers, n_trials)
+    function [seq1, seq2] = randomize_mf_talker_pairs(male_talkers, female_talkers, n_trials)
         seq1 = randomize_talker(male_talkers, n_trials);
         seq2 = randomize_talker(female_talkers, n_trials);
     end
 
-    function [seq1, seq2] = randomize_female_female_talker_pairs(female_talkers, n_trials)
+    function [seq1, seq2] = randomize_ff_talker_pairs(female_talkers, n_trials)
         duplicates = true;
         while duplicates
             seq1 = randomize_talker(female_talkers, n_trials);        

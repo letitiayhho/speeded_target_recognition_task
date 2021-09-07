@@ -1,8 +1,7 @@
-function [block_type, talker] = get_talker_order(subject_number)
-    rng(subject_number);
+function [block_type, talker] = get_talker_order()
     rep_talkers = choose_talkers_for_each_rep();
     
-    % Broadcas the chosen talkers for each rep into 16 trials
+    % Broadcast the chosen talkers for each rep into 16 trials
     talker = [];
     block_type = [];
     for i = 1:length(rep_talkers)

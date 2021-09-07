@@ -1,35 +1,53 @@
+%%%%%%%%%%%%%%%%%%%%%%%%% UPDATE THIS SECTION BEFORE EACH SUBJECT/TEST
+
+
+SUBJ_NUM = 0; % numeric
+BLOCK = 1; % numeric
+
+%%%%%%%%%%%%%%%%%%%%%%%
 %% Set up
 cd('~/src/speeded_vowel_identification/')
 addpath('task/functions')
 PsychJavaTrouble(1);
 
-% Add constants
+% Constants
 FS = 44100;
-SUBJ_NUM = 0;
-BLOCK = 'test';
-TRAINING = true; % change training depending on block number
+IS_TRAINING = BLOCK == 1 || BLOCK == 2; % change training depending on block number
 
-%% Load stim_order
-stim = readtable('generate_stim_order/output/stim_order.txt');
-stim_path = get_filepaths(stim);
-target = get_target(stim);
+% Init psychtoolbox
+PTB = init_psychtoolbox(FS);
 
-%% Init psychtoolbox
-ptb = init_psychtoolbox(FS);
+% Load stim order
+stim_file = ['generate_stim_order/output/', num2str(SUBJ_NUM), '_stim_order.txt'];
+STIM = readtable(stim_file);
 
-%% Test
-fixation(ptb); % show fixation cross to start trial
-present_target(ptb, target) % show target
-for s = 1:length(stim_path)
-    [rt, resp] = present_stimulus(stim_path(s), ptb); % trigger sent here
-    correct = check_answer(stim.istarget(s), resp);
-    write_output(SUBJ_NUM, BLOCK, s, stim.vowel(s), rt, resp, correct);
-    if TRAINING
-        give_feedback(correct, ptb);
+%% Display instructions
+instructions(PTB, BLOCK);
+
+%% Task
+% loop through all reps in block
+n_reps = max(STIM.rep);
+for rep = 1:n_reps
+    stim_path = get_filepaths(STIM, BLOCK, rep);
+    target = get_target(STIM, BLOCK, rep);
+
+    % loop through all stim in rep
+    fixation(PTB); % show fixation cross to start trial
+    present_target(PTB, target) % show target
+
+    for v = 1:length(stim_path)
+        [rt, resp] = present_stimulus(stim_path(v), PTB); % trigger sent here
+        correct = check_answer(STIM.istarget(v), resp);
+        write_output(SUBJ_NUM, BLOCK, v, STIM.vowel(v), rt, resp, correct);
+        if IS_TRAINING
+            give_feedback(correct, PTB);
+        end
     end
 end
 
-%% End
+%% end block
+instructions(PTB, 0)
+
 sca; % screen clear all
 close all;
 clearvars;

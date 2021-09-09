@@ -15,7 +15,7 @@ PsychJavaTrouble(1);
 
 % Constants
 FS = 44100;
-RTBOX = false;
+RTBOX = true;
 IS_TRAINING = BLOCK == 1 || BLOCK == 2; % change training depending on block number
 
 % set up psychtoolbox and RTBox

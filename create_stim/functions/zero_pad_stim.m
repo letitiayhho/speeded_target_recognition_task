@@ -1,4 +1,4 @@
-dirs = dir('subj*/exemplars/*.wav');
+dirs = dir('create_stim/subj*/exemplars/*.wav');
 path = {dirs(:).folder};
 filename = {dirs(:).name};
 

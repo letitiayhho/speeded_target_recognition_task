@@ -13,7 +13,7 @@ subj23	talker11
 subj24	talker12
 
 
-males = 10, 17, 21
+males = 10, 17, 20
 
 subj10 m1
 subj17 m2

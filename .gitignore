@@ -1,5 +1,7 @@
 create_stim/subj*
 
+.ipynb_checkpoints/
+
 task/output
 
 archive

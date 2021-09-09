@@ -9,6 +9,6 @@ function init_RTBox(rtbox)
     RTBox('clear');
     RTBox('DebounceInterval', 0);
     Priority(1); % prioritize timing
-    RTBox('TTLWidth', 0.00056); % need if sending multiple consecutively
+    RTBox('TTLWidth', 0.001); % need if sending multiple consecutively
 
 end

@@ -13,8 +13,9 @@ TRAINING = true; % change training depending on block number
 ptb = init_psychtoolbox(FS);
 
 %% Test with same audio each time
-stim = 'f1/AH/wav';
+stim = 'stim/f1/AH.wav';
 fixation(ptb); % show fixation cross to start trial
 for s = 1:20
     [rt, resp] = present_stimulus(stim, ptb); % trigger sent here
 end
+sca

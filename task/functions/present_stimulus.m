@@ -21,7 +21,7 @@ function [rt, resp] = present_stimulus(stim, ptb)
     RTBox('TTL', 255)
 
     % stop audio
-    PsychPortAudio('Stop', ptb.pahandle, 1, 1);
+    [stim_start, ~, ~, ~] = PsychPortAudio('Stop', ptb.pahandle, 1, 1);
 
     % Collect response
     [~, rt] = KbQueueCheck;

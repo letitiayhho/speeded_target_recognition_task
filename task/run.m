@@ -10,12 +10,12 @@ PsychDebugWindowConfiguration
 %% Set up
 cd('~/src/speeded_vowel_identification/')
 addpath('task/functions')
-addpath('task/USTCRTBox_003')
+addpath('task/USTCRTBox_003')      
 PsychJavaTrouble(1);
 
 % Constants
 FS = 44100;
-RTBOX = true;
+RTBOX = false;
 IS_TRAINING = BLOCK == 1 || BLOCK == 2; % change training depending on block number
 
 % set up psychtoolbox and RTBox
@@ -31,6 +31,7 @@ instructions(PTB, BLOCK);
 
 %% Task
 % loop through all reps in block
+STIM = STIM(STIM.block == BLOCK, :);
 n_reps = max(STIM.rep);
 for rep = 1:n_reps
     stim_path = get_filepaths(STIM, BLOCK, rep);

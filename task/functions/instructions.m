@@ -12,7 +12,7 @@ function instructions(ptb, block)
     
 %     ListenChar(-1); % disable typing into matlab window
     for i = 1:length(l)
-        fpath = ['task/instructions/instructions_' num2str(i) '.txt'];
+        fpath = ['task/instructions/instructions_' num2str(l(i)) '.txt'];
         txt = load_text_from(fpath);
         % make screen background black
         DrawFormattedText(ptb.window, txt, 'center', 'center', 1);

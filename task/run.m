@@ -1,8 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%% UPDATE THIS SECTION BEFORE EACH SUBJECT/TEST
 
 SUBJ_NUM = 0; % numeric
-BLOCK = 1; % numeric
-      
+BLOCK = 2; % numeric
+RTBOX = false; % logical
+       
 %%%%%%%%%%%%%%%%%%%%%%%
       
 PsychDebugWindowConfiguration
@@ -13,9 +14,8 @@ addpath('task/functions')
 addpath('task/USTCRTBox_003')      
 PsychJavaTrouble(1);
 
-% Constants
+% other constants      
 FS = 44100;
-RTBOX = true;
 IS_TRAINING = BLOCK == 1 || BLOCK == 2; % change training depending on block number
 
 % set up psychtoolbox and RTBox

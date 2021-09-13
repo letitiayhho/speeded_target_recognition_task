@@ -4,7 +4,7 @@ import sys
 import shutil
 
 def move_exemplars(subject_number):
-    subject_dir = Path("../subj" + subject_number)
+    subject_dir = Path("subj" + subject_number)
     with open(subject_dir / "prototypicality_rankings.txt") as f:
         f.readline()  # strip header
         df = [

@@ -41,7 +41,7 @@ for rep = 1:n_reps
     fixation(PTB); % show fixation cross to start trial
     present_target(PTB, target) % show target
 
-    for v = 1:length(paths)n
+    for v = 1:length(paths)
         [rt, resp] = present_stimulus(paths(v), PTB); % trigger sent here
         correct = check_answer(istarget(v), resp);
         write_output(SUBJ_NUM, BLOCK, v, vowels(v, :), target, rt, resp, correct);
@@ -52,7 +52,7 @@ for rep = 1:n_reps
 end
 
 %% end block
-instructions(PTB, 0)
+instructions(PTB, 0) 
 
 sca; % screen clear all
 close all;

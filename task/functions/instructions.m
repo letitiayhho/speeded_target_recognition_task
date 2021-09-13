@@ -3,7 +3,7 @@ function instructions(ptb, block)
     if block == 1  
         l = 1:6; % overall instructions
     elseif block == 2
-        l = 2; % instructions before training block 2
+        l = 7; % instructions before training block 2
     elseif ismember(block, [3 4 5 6])
         l = 8; % instructions before experiment blocks
     elseif block == 0 

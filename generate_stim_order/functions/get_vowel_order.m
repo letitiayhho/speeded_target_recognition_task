@@ -3,8 +3,8 @@ function [vowel_order, istarget] = get_vowel_order()
     vowel_order = [];
     istarget = [];
     for i = 1:length(target_order)
-        [vowels, target] = choose_target_for_each_trial(target_order(i));
-        vowel_order = [vowel_order; vowels];
-        istarget = [istarget; target];
+        [vowels, target] = choose_vowels_for_each_trial(target_order(i));
+        vowel_order = [vowel_order, vowels];
+        istarget = [istarget, target];
     end
 end

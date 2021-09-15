@@ -3,7 +3,7 @@
 SUBJ_NUM = 0; % numeric
 BLOCK = 2; % numeric
 RTBOX = false; % logical
-       
+
 %%%%%%%%%%%%%%%%%%%%%%%
       
 PsychDebugWindowConfiguration

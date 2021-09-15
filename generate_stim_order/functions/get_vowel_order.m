@@ -7,4 +7,6 @@ function [vowel_order, istarget] = get_vowel_order()
         vowel_order = [vowel_order, vowels];
         istarget = [istarget, target];
     end
+    vowel_order = vowel_order';
+    istarget = istarget';
 end

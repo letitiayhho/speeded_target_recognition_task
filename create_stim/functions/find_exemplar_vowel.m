@@ -30,9 +30,9 @@ function find_exemplar_vowel(subject_number)
         prototype = prototypes(strcmp(prototypes.vowel, utterance.vowel),:);
 
         % compute distance
-        x = [utterance.f1, utterance.f2];
-        y = [prototype.mean_f1, prototype.mean_f2];
-        df.d(i) = sum((x-y).^2).^0.5;
+        a = [utterance.f1, utterance.f2];
+        b = [prototype.mean_f1, prototype.mean_f2];
+        df.d(i) = distance(a, b);
     end
 
     % Rank the utterances by distance

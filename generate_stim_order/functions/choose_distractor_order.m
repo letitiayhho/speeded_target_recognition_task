@@ -1,4 +1,4 @@
-function [vowel_order, istarget] = choose_vowels_for_each_trial(target)
+function [vowel_order, istarget] = choose_distractor_order(target)
     istarget = zeros(1, 16);
 
     % List of targets and distractors

@@ -1,4 +1,4 @@
-function target_order = choose_target_for_each_rep()
+function target_order = choose_target_order()
     possible_targets = ["IH", "OO", "UH"];
     target_order = [];
     for i = 1:24

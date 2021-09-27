@@ -6,7 +6,7 @@ all_formants = readtable('all_formants.txt');
 % plot_vowel_space(all_formants.f2, all_formants.f1, all_formants.vowel)
 
 %% Plot vowel space of select subjects
-female_subjects = ["subj9", "subj15", "subj16", "subj18", "subj19",...
+female_subjects = ["subj09", "subj15", "subj16", "subj18", "subj19",...
     "subj20", "subj22", "subj23", "subj24"];
 female_formants = subset_by_subject(all_formants, female_subjects);
 % plot_vowel_space(female_formants.f2, female_formants.f1, female_formants.subject)
@@ -19,7 +19,7 @@ vowels = ["AE", "AH", "EE", "EH", "IH", "OO", "UH"];
 distances = zeros(length(female_subjects), length(female_subjects), length(vowels));
 for i = 1:length(female_subjects)
     for j = 1:length(female_subjects)
-        if j > i
+        if j >= i
             continue
         end
         for k = 1:length(vowels)
@@ -36,6 +36,18 @@ end
 
 % Average distance across vowels
 distances = mean(distances, 3);
+
+% Remove subject 20 and 19, set 0s to NaN
+distances(distances == 0) = NaN;
+distances(5, :) = NaN;
+distances(6, :) = NaN;
+distances(:, 5) = NaN;
+distances(:, 6) = NaN;
+
+% Add row and column names
+distances = array2table(distances);
+distances.Properties.VariableNames = female_subjects;
+distances.Properties.RowNames = female_subjects;
 
 function points = get_points(df, subject, vowel)
     df = df(strcmp(df.vowel, vowel), :);

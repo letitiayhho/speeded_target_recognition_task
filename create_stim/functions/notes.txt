@@ -21,11 +21,11 @@ subj17 m2
 subj9 f1
 subj15 f2
 
-subject 19 EH sucks
+subject 19 EH sucks, deleted EH9.wav, confirmed by checking pitch
 
 Based on the pitches and my measure of vowel space difference, speakers 22 and 24 should be similar, and 9 and 16 should be different. Their vowels are attached.
 
-9- d1
-16- d2
-22- s1
-24- s2
+9- X
+16- Y
+22- A
+24- B

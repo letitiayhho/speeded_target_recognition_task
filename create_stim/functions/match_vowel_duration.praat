@@ -1,10 +1,12 @@
 form Match vowel duration
-	sentence vowel
-	positive final_duration 300
+	word subject_dir
+	word vowel
 endform
 
+final_duration = 300
+
 # Get vowel duration
-filename$ = "/Users/letitiaho/src/speeded_vowel_identification_task/create_stim/subj21/all_vowels/" + vowel$ + ".wav"
+filename$ = "/Users/letitiaho/src/speeded_vowel_identification_task/create_stim/" + subject_dir$ + "/" + vowel$ + ".wav"
 Read from file: filename$
 selectObject: "Sound " + vowel$
 Copy: vowel$ + "_copy"
@@ -20,5 +22,4 @@ selectObject: "Sound " + vowel$ + "_copy"
 Lengthen (overlap-add): 60, 300, 'durfactor'
 
 # Save file
-selectObject: "Sound " + vowel$ + "_copy_1"
-Save as WAV file: "/Users/letitiaho/Desktop/EE5lengthened.wav"
+Save as WAV file: filename$

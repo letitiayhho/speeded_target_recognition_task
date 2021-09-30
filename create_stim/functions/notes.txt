@@ -29,3 +29,5 @@ Based on the pitches and my measure of vowel space difference, speakers 22 and 2
 16- Y
 22- A
 24- B
+
+match all lengths to 300 ms

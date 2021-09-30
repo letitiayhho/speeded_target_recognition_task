@@ -1,0 +1,43 @@
+#!/bin/bash
+set -euo pipefail
+
+usage() {
+    cat <<eof >&2
+usage: $0
+
+    description
+        takes prototypicality_rankings.txt for
+        each subject and moves exemplars to
+        subj#/exemplars folder, then adjusts
+        all RMS to 1, extends vowel length to
+        300 ms with Praat and zero-pads to 500
+        ms
+eof
+    exit 1
+}
+
+if [[ $# -ne 0 ]]; then
+    usage
+fi
+
+sudo rm subj*/exemplars/*.wav
+
+for subject_dir in subj*/ ; do
+    echo "$subject_dir"
+
+    # move top 3 exemplars to a separate folder
+    python3 functions/move_exemplars.py "$subject_dir"
+done
+
+chmod 700 subj*/exemplars/*.wav
+
+for file in subj*/exemplars/*.wav ; do
+    subject_dir="$(dirname "$file")"
+    vowel="$(basename -s .wav "$file")"
+
+    # extend vowel duration
+    /Applications/Praat.app/Contents/MacOS/Praat --run functions/match_vowel_duration.praat "$subject_dir" "$vowel"
+
+    # match rms
+    # zero-pad
+done

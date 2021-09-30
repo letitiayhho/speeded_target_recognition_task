@@ -1,5 +1,4 @@
-cd('/Users/letitiaho/src/speeded_vowel_identification_task')
-dirs = dir('create_stim/subj*/exemplars/*.wav');
+dirs = dir('subj*/exemplars/*.wav');
 path = {dirs(:).folder};
 filename = {dirs(:).name};
 

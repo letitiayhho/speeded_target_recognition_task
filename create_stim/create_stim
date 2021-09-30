@@ -20,24 +20,24 @@ if [[ $# -ne 0 ]]; then
     usage
 fi
 
-sudo rm subj*/exemplars/*.wav
+# clean out old files
+rm subj*/exemplars/*.wav
 
+# move top 3 exemplars to a separate folder
 for subject_dir in subj*/ ; do
     echo "$subject_dir"
-
-    # move top 3 exemplars to a separate folder
     python3 functions/move_exemplars.py "$subject_dir"
 done
 
+# enable modification of vowel .wav files
 chmod 700 subj*/exemplars/*.wav
 
+# extend vowel duration
 for file in subj*/exemplars/*.wav ; do
     subject_dir="$(dirname "$file")"
     vowel="$(basename -s .wav "$file")"
-
-    # extend vowel duration
     /Applications/Praat.app/Contents/MacOS/Praat --run functions/match_vowel_duration.praat "$subject_dir" "$vowel"
-
-    # match rms
-    # zero-pad
 done
+
+# match rms
+matlab -nodisplay -r "addpath('functions'); run('normalize_stim_rms.m'); quit"

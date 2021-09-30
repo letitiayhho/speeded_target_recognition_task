@@ -30,4 +30,7 @@ Based on the pitches and my measure of vowel space difference, speakers 22 and 2
 22- A
 24- B
 
-match all lengths to 300 ms
+match all lengths to 300 ms (longest approx 270 ms)
+PSOLA works GREAT
+don't need to zero pad wav file
+match all rms to 0.25 (max is 0.2087)

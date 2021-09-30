@@ -1,19 +1,23 @@
 % NORMALIZE BEFORE ZERO PADDING
 
-cd('/Users/letitiaho/src/speeded_vowel_identification')
+cd('/Users/letitiaho/src/speeded_vowel_identification_task')
 dirs = dir('create_stim/subj*/exemplars/*.wav');
 path = {dirs(:).folder};
 filename = {dirs(:).name};
 
+% RMS = [];
 % loop over each stim
 for i = 1:length(path)
     stim = fullfile(char(path(i)), char(filename(i)));
     fprintf(1, [stim, '\n'])
 
-    % zero pad
+    % change rms to 0.25
     [y, Fs] = audioread(stim);
-    y_new = y*1/(rms(y));
+%     RMS = [RMS, rms(y)];
+    y_new = y*0.25/(rms(y));
     
     % write
     audiowrite(stim, y_new, Fs)
 end
+
+% hist(RMS)

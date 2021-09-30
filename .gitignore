@@ -15,3 +15,5 @@ notes
 *.html
 
 *.png
+
+__pycache__

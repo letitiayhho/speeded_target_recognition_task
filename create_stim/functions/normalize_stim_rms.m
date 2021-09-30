@@ -15,21 +15,3 @@ for i = 1:length(path)
     % write
     audiowrite(stim, y_new, Fs)
 end
-
-% function [] = normalize_stim_rms(subject_dir, vowel)
-% arguments
-%     subject_dir char
-%     vowel char
-% end
-% 
-%     stim = fullfile(subject_dir, "exemplars", strcat(vowel, ".wav"));
-% 
-%     % change rms to 0.25
-%     fprintf(1, stim)
-% %     [y, Fs] = audioread(stim);
-% %     RMS = [RMS, rms(y)];
-% %     y_new = y*0.25/(rms(y));
-% %     
-% %     % write
-% %     audiowrite(stim, y_new, Fs)
-% end

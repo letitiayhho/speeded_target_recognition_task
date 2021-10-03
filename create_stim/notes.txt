@@ -34,3 +34,10 @@ match all lengths to 300 ms (longest approx 270 ms)
 PSOLA works GREAT
 don't need to zero pad wav file
 match all rms to 0.25 (max is 0.2087)
+
+
+change rms.....?
+EE2 and EE3 for subj 22 sucks (originally EE.wav and EE4.wav)
+IH3 for subj 22 sucks
+OO3 for subj 22 sucks
+UH3 for subj 22 is very different

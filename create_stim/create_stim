@@ -37,7 +37,9 @@ for file in subj*/modified/*.wav ; do
     echo "$file"
     subject_dir="$(dirname "$file")"
     vowel="$(basename -s .wav "$file")"
-    duration="$("$(soxi -D "$file")"*100)"
+    duration="$(soxi -D "$file")"
+    duration="$(echo "$duration" * 100  | bc | cut -d. -f1)"
+    echo "$duration"
     if  [ "$duration" -lt 5 ]
     then
         continue

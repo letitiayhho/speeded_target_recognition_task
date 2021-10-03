@@ -41,3 +41,6 @@ EE2 and EE3 for subj 22 sucks (originally EE.wav and EE4.wav)
 IH3 for subj 22 sucks
 OO3 for subj 22 sucks
 UH3 for subj 22 is very different
+
+
+remove EH6 from subj16/modified

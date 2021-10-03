@@ -3,6 +3,8 @@ form Match vowel duration
 	word vowel
 endform
 
+nocheck Remove
+
 final_duration = 300
 
 # Get vowel duration

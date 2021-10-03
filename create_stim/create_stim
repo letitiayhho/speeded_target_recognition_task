@@ -21,23 +21,39 @@ if [[ $# -ne 0 ]]; then
 fi
 
 # clean out old files
-rm subj*/exemplars/*.wav
+rm -rf subj*/modified
 
-# move top 3 exemplars to a separate folder
-for subject_dir in subj*/ ; do
+echo "Copying files from raw/ to modified/"
+for subject_dir in subj*/; do
     echo "$subject_dir"
-    python3 functions/move_exemplars.py "$subject_dir"
+    mkdir "$subject_dir"/modified
+    cp "$subject_dir"/raw/*.wav "$subject_dir"/modified
+    chmod 700 "$subject_dir"/modified/*.wav
 done
 
-# enable modification of vowel .wav files
-chmod 700 subj*/exemplars/*.wav
-
 # extend vowel duration
-for file in subj*/exemplars/*.wav ; do
+echo "Extending vowel durations"
+for file in subj*/modified/*.wav ; do
+    echo "$file"
     subject_dir="$(dirname "$file")"
     vowel="$(basename -s .wav "$file")"
-    /Applications/Praat.app/Contents/MacOS/Praat --run functions/match_vowel_duration.praat "$subject_dir" "$vowel"
+    duration="$("$(soxi -D "$file")"*100)"
+    if  [ "$duration" -lt 5 ]
+    then
+        continue
+    else
+        echo "Skipping $file because it is too short"
+        /Applications/Praat.app/Contents/MacOS/Praat --run functions/match_vowel_duration.praat "$subject_dir" "$vowel"
+    fi
 done
 
 # match rms
+echo "Matching rms"
 matlab -nodisplay -r "addpath('functions'); run('normalize_stim_rms.m'); quit"
+
+# move top 3 exemplars to a separate folder
+#for subject_dir in subj*/ ; do
+#    echo "Moving exemplars"
+#    echo "$subject_dir"
+#    python3 functions/move_exemplars.py "$subject_dir"
+#done

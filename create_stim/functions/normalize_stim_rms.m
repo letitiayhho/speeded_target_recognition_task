@@ -1,4 +1,4 @@
-dirs = dir('subj*/exemplars/*.wav');
+dirs = dir('subj*/modified/*.wav');
 path = {dirs(:).folder};
 filename = {dirs(:).name};
 

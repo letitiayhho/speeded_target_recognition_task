@@ -27,12 +27,13 @@ def move_exemplars():
         for row in df:
             vowel, _, _, filename, _, rank = row
             rank = int(rank)
+            output_filename = f"{Path(filename).stem}_{rank}.wav"
             try:
-                shutil.copy2(
+                shutil.move(
                         subject_dir / "modified" / filename,
-                        subject_dir / "exemplars" / f"{Path(filename).stem}_{rank}.wav",
+                        subject_dir / "modified" / output_filename,
                         )
-                print(f"Moving {subject_dir.parent.name}/modified/{filename} to exemplars/")
+                print(f"Renaming {subject_dir.parent.name}/modified/{filename} to {output_filename}")
             except:
                 print(f"File {subject_dir}/modified/{filename} does not exist, it was removed for being too short")
 

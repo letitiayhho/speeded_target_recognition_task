@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+"""
+takes prototypicality_rankings.txt for
+each subject and moves exemplars to
+subj#/exemplars folder, then adjusts
+all RMS to 1, extends vowel length to
+300 ms with Praat and zero-pads to 500
+ms
+"""
+
+import os
+import subprocess
+import sys
+
+from pathlib import Path
+from shutil import copy2
+
+
+def main() -> None:
+    import pdb
+    pdb.set_trace()
+    print("Copying files from raw/ to modified/")
+    root = Path.cwd()
+    modified_wavs = []
+    for subject_dir in root.iterdir():
+        if not subject_dir.is_dir():
+            continue
+        if not subject_dir.name.startswith("subj"):
+            continue
+        print(subject_dir)
+        modified = subject_dir / "modified"
+        modified.mkdir(exist_ok=True)
+
+        raw = subject_dir / "raw"
+        for original_wav in raw.iterdir():
+            if original_wav.suffix != ".wav":
+                continue
+            modified_wav = modified / original_wav.name
+            copy2(original_wav, modified_wav)
+            os.chmod(modified_wav, 0o700)
+            modified_wavs.append(modified_wav)
+
+    print("Extending vowel durations")
+    for wav in modified_wavs:
+        print(wav)
+        subject = wav.parent.parent.name
+        vowel = wav.stem
+        stdout = subprocess.check_output(["soxi", "-D", str(wav)])
+        duration = float(stdout.decode("utf-8").strip())
+        if duration < 0.05:
+            print("Skipping {wav} because it is too short")
+            continue
+        subprocess.check_output(
+            [
+                "/Applications/Praat.app/Contents/MacOS/Praat",
+                "--run",
+                "functions/match_vowel_duration.praat",
+                subject,
+                vowel,
+            ]
+        )
+
+    print("Matching rms")
+    subprocess.check_output(
+        [
+            "matlab",
+            "-nodisplay",
+            "-r",
+            "addpath('functions'); run('normalize_stim_rms.m'); quit",
+        ]
+    )
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 1:
+        print(__doc__)
+        sys.exit(1)
+    main()

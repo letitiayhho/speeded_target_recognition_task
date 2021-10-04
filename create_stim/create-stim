@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 """
-takes prototypicality_rankings.txt for
-each subject and moves exemplars to
-subj#/exemplars folder, then adjusts
-all RMS to 1, extends vowel length to
-300 ms with Praat and zero-pads to 500
-ms
+Moves all vowel signals to subj#/modified
+extends their vowel length and adjusts
+their RMS to 0.25.
 """
 
 import os
@@ -48,7 +45,7 @@ def main() -> None:
         vowel = wav.stem
         stdout = subprocess.check_output(["soxi", "-D", str(wav)])
         duration = float(stdout.decode("utf-8").strip())
-        if duration < 0.1:
+        if duration < 0.05:
             print(str(wav) + " is too short, deleting sample from modified/")
             os.remove(wav)
             continue

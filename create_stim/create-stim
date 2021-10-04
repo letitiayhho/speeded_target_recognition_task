@@ -17,8 +17,9 @@ from shutil import copy2
 
 
 def main() -> None:
-    import pdb
-    pdb.set_trace()
+    #import pdb
+    #pdb.set_trace()
+
     print("Copying files from raw/ to modified/")
     root = Path.cwd()
     modified_wavs = []
@@ -47,8 +48,9 @@ def main() -> None:
         vowel = wav.stem
         stdout = subprocess.check_output(["soxi", "-D", str(wav)])
         duration = float(stdout.decode("utf-8").strip())
-        if duration < 0.05:
-            print("Skipping {wav} because it is too short")
+        if duration < 0.1:
+            print(str(wav) + " is too short, deleting sample from modified/")
+            os.remove(wav)
             continue
         subprocess.check_output(
             [

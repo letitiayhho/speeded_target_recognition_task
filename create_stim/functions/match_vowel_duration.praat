@@ -5,7 +5,7 @@ endform
 
 nocheck Remove
 
-final_duration = 300
+final_duration = 200
 
 # Get vowel duration
 filename$ = "/Users/letitiaho/src/speeded_vowel_identification_task/create_stim/" + subject_dir$ + "/modified/" + vowel$ + ".wav"

@@ -49,7 +49,7 @@ def main() -> None:
             print(str(wav) + " is too short, deleting sample from modified/")
             os.remove(wav)
             continue
-        while duration < 0.299:
+        while duration < 0.1999 or duration > 0.2001:
             subprocess.check_output(
                 [
                     "/Applications/Praat.app/Contents/MacOS/Praat",

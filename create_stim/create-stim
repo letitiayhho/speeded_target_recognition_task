@@ -49,15 +49,19 @@ def main() -> None:
             print(str(wav) + " is too short, deleting sample from modified/")
             os.remove(wav)
             continue
-        subprocess.check_output(
-            [
-                "/Applications/Praat.app/Contents/MacOS/Praat",
-                "--run",
-                "functions/match_vowel_duration.praat",
-                subject,
-                vowel,
-            ]
-        )
+        while duration < 0.299:
+            subprocess.check_output(
+                [
+                    "/Applications/Praat.app/Contents/MacOS/Praat",
+                    "--run",
+                    "functions/match_vowel_duration.praat",
+                    subject,
+                    vowel,
+                ]
+            )
+            stdout = subprocess.check_output(["soxi", "-D", str(wav)])
+            duration = float(stdout.decode("utf-8").strip())
+        print("lengthened duration: " + str(duration))
 
     print("Matching rms")
     subprocess.check_output(

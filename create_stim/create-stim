@@ -69,7 +69,7 @@ def main() -> None:
             "matlab",
             "-nodisplay",
             "-r",
-            "addpath('functions'); run('normalize_stim_rms.m'); quit",
+            "addpath('functions'); run('match_stim_rms.m'); quit",
         ]
     )
 

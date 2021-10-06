@@ -44,3 +44,77 @@ UH3 for subj 22 is very different
 
 
 remove EH6 from subj16/modified
+
+subj9 actually sucks, gonna have to nix 
+
+10/4/2021
+removing vowels shorter than 100 msec to see if that helps
+will now check vowel quality
+will drop subjects with insufficient number of vowels
+
+subj9 — 
+AE
+AH
+EE— only good one
+EH
+IH— none left
+OO- 3 left
+UH - none left
+
+subj10
+male
+
+subj15
+AE
+AH
+EE
+EH- only 1
+IH- only 1
+OO
+UH - none left
+
+subj16
+plenty of all, none sound fantastic though
+
+subj17
+male
+
+subj18
+plenty of all, none sound fantastic though
+
+subj19
+AE
+AH
+EE
+EH- only 1
+IH- none
+OO
+UH- only 1
+
+subj20
+AE
+AH
+EE
+EH
+IH
+OO
+UH- only 2
+
+
+22 sounds nice
+23 sounds nice
+
+A— EE1, EE2, EE3, EH1, IH3, OO1, OO3
+B- EE1, EE3, EH1, EH3?, UH2??? CHECK LENGTH UH3?
+
+
+after nixing subj9, it should be
+15- X
+16- Y
+22/23- A
+24- B
+
+so let's check their vowels first (AH, EE, EH, OO)
+
+wait what, not all durations were modified?
+maybe we should not use EE, replace EE with IH (AH, EH, IH, OO)

@@ -10,7 +10,7 @@ import os
 import sys
 import shutil
 
-def move_exemplars():
+def add_rank_to_vowel_filename():
     root = Path.cwd()
     for subject_dir in root.iterdir():
         if not subject_dir.is_dir():
@@ -41,4 +41,4 @@ if __name__ == "__main__":
     if len(sys.argv) != 1:
         print(__doc__)
         sys.exit(1)
-    move_exemplars()
+    add_rank_to_vowel_filename()

@@ -1,3 +1,6 @@
+from pathlib import Path
+import shutil
+
 def rename_AH_to_AA():
     root = Path.cwd()
     for subject_dir in root.iterdir():
@@ -10,5 +13,11 @@ def rename_AH_to_AA():
         for exemplar in exemplar_dir.iterdir():
             if exemplar.suffix != ".wav":
                 continue
-            if "AH" in exemplar:
-                exemplars.replace("H", "A")
+            if "AH" in exemplar.name:
+                new_name = exemplar.name.replace("H", "A")
+                print(f"Replacing {exemplar.name} with {new_name}")
+                shutil.move(
+                        subject_dir / "exemplars" / exemplar.name,
+                        subject_dir / "exemplars" / new_name
+                        )
+

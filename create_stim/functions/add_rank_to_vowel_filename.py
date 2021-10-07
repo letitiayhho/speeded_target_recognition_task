@@ -4,6 +4,9 @@ each subject and moves exemplars to
 subj#/exemplars/<filename>_rank.wav
 """
 
+from pathlib import Path
+import shutil
+
 def add_rank_to_vowel_filename():
     root = Path.cwd()
     for subject_dir in root.iterdir():

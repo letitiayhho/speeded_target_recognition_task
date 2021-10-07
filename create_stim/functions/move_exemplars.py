@@ -1,3 +1,6 @@
+from pathlib import Path
+import shutil
+
 def move_exemplars():
     with open('functions/exemplars.txt', 'r') as f:
         f.readline() # strip header

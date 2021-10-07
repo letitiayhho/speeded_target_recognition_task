@@ -1,36 +1,31 @@
-function generate_stim_order(subject_number)
-    cd '/Users/letitiaho/src/speeded_vowel_identification/generate_stim_order/'
-    addpath('functions')
-    subject_number = str2num(subject_number);
+function [stim_order, n_trials, trial_type, target_key]  = generate_stim_order(subject_number, block)
+    addpath('generate_stim_order/functions')
 
     % SET SEED
     rng(subject_number)
 
     % Get talker order
-    [type, talker] = get_talker_order();
+%         [talker1, talker2, same, key, n_trials, same_key, block_type] = get_talker_order(block);
+    [block_type, trial_type, talker, istarget,...
+        key, target_key, n_trials] = get_talker_order(block);
 
     % Get vowel order
-    [vowel, istarget] = get_vowel_order();
+    [vowel, istarget, key, target_key] = get_vowel_order(n_trials);
+    
+    % Get exemplar order
+    exemplar = get_exemplar_order(n_trials);
 
     % Block 
-    block_length = [1, 5, 16, 16, 16, 16];
-    block = [];
-    rep = [];
-    utterance = [];
-    for i = 1:length(block_length)
-        block = [block; repmat(i, block_length(i)*16, 1)];
-        for j = 1:block_length(i)
-            rep = [rep; repmat(j, 16, 1)];
-            utterance = [utterance; (1:16)'];
-        end
-    end
+    block = repmat(block, n_trials, 1);
+    rep = (1:n_trials)';
 
     % Subject
-    subject = repmat(subject_number, length(type), 1);
+    subject = repmat(subject_number, n_trials, 1);
 
-    % COLUMNS: subject, block, type, rep, utterance, vowel, istarget, talker
-    stim_order = table(subject, block, type, rep, utterance, vowel, istarget, talker);
+    % CREATE TABLE
+    stim_order = table(subject, block, block_type, trial_type, rep, utterance,...
+        vowel, talker, exemplar, istarget, key);
 
     % WRITE
-    writetable(stim_order, ['output/', num2str(subject_number), '_stim_order.txt'])
+%     writetable(stim_order, ['output/', num2str(subject_number), '_stim_order.txt'])
 end

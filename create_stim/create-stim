@@ -16,72 +16,76 @@ sys.path.append("functions")
 
 import add_rank_to_vowel_filename
 import move_exemplars
+import rename_AH_to_AA
 
 def main() -> None:
     #import pdb
     #pdb.set_trace()
 
-    print("Copying files from raw/ to modified/")
-    root = Path.cwd()
-    modified_wavs = []
-    for subject_dir in root.iterdir():
-        if not subject_dir.is_dir():
-            continue
-        if not subject_dir.name.startswith("subj"):
-            continue
-        print(subject_dir)
-        modified = subject_dir / "modified"
-        modified.mkdir(exist_ok=True)
+    #print("Copying files from raw/ to modified/")
+    #root = Path.cwd()
+    #modified_wavs = []
+    #for subject_dir in root.iterdir():
+    #    if not subject_dir.is_dir():
+    #        continue
+    #    if not subject_dir.name.startswith("subj"):
+    #        continue
+    #    print(subject_dir)
+    #    modified = subject_dir / "modified"
+    #    modified.mkdir(exist_ok=True)
 
-        raw = subject_dir / "raw"
-        for original_wav in raw.iterdir():
-            if original_wav.suffix != ".wav":
-                continue
-            modified_wav = modified / original_wav.name
-            copy2(original_wav, modified_wav)
-            os.chmod(modified_wav, 0o700)
-            modified_wavs.append(modified_wav)
+    #    raw = subject_dir / "raw"
+    #    for original_wav in raw.iterdir():
+    #        if original_wav.suffix != ".wav":
+    #            continue
+    #        modified_wav = modified / original_wav.name
+    #        copy2(original_wav, modified_wav)
+    #        os.chmod(modified_wav, 0o700)
+    #        modified_wavs.append(modified_wav)
 
-    print("Extending vowel durations")
-    for wav in modified_wavs:
-        print(wav)
-        subject = wav.parent.parent.name
-        vowel = wav.stem
-        stdout = subprocess.check_output(["soxi", "-D", str(wav)])
-        duration = float(stdout.decode("utf-8").strip())
-        if duration < 0.05:
-            print(str(wav) + " is too short, deleting sample from modified/")
-            os.remove(wav)
-            continue
-        while duration < 0.1999 or duration > 0.2001:
-            subprocess.check_output(
-                [
-                    "/Applications/Praat.app/Contents/MacOS/Praat",
-                    "--run",
-                    "functions/match_vowel_duration.praat",
-                    subject,
-                    vowel,
-                ]
-            )
-            stdout = subprocess.check_output(["soxi", "-D", str(wav)])
-            duration = float(stdout.decode("utf-8").strip())
-        print("lengthened duration: " + str(duration))
+    #print("Extending vowel durations")
+    #for wav in modified_wavs:
+    #    print(wav)
+    #    subject = wav.parent.parent.name
+    #    vowel = wav.stem
+    #    stdout = subprocess.check_output(["soxi", "-D", str(wav)])
+    #    duration = float(stdout.decode("utf-8").strip())
+    #    if duration < 0.05:
+    #        print(str(wav) + " is too short, deleting sample from modified/")
+    #        os.remove(wav)
+    #        continue
+    #    while duration < 0.1999 or duration > 0.2001:
+    #        subprocess.check_output(
+    #            [
+    #                "/Applications/Praat.app/Contents/MacOS/Praat",
+    #                "--run",
+    #                "functions/match_vowel_duration.praat",
+    #                subject,
+    #                vowel,
+    #            ]
+    #        )
+    #        stdout = subprocess.check_output(["soxi", "-D", str(wav)])
+    #        duration = float(stdout.decode("utf-8").strip())
+    #    print("lengthened duration: " + str(duration))
 
-    print("Matching rms")
-    subprocess.check_output(
-        [
-            "matlab",
-            "-nodisplay",
-            "-r",
-            "addpath('functions'); run('match_stim_rms.m'); quit",
-        ]
-    )
+    #print("Matching rms")
+    #subprocess.check_output(
+    #    [
+    #        "matlab",
+    #        "-nodisplay",
+    #        "-r",
+    #        "addpath('functions'); run('match_stim_rms.m'); quit",
+    #    ]
+    #)
 
-    print("Adding rank to vowel filename")
-    add_rank_to_vowel_filename.add_rank_to_vowel_filename()
+    #print("Adding rank to vowel filename")
+    #add_rank_to_vowel_filename.add_rank_to_vowel_filename()
 
-    print("Move exemplars in exemplars.txt to exemplars/")
-    move_exemplars.move_exemplars()
+    #print("Move exemplars in exemplars.txt to exemplars/")
+    #move_exemplars.move_exemplars()
+
+    print('Rename "AH" to "AA"')
+    rename_AH_to_AA.rename_AH_to_AA()
 
 
 if __name__ == "__main__":

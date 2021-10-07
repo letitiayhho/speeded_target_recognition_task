@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-
-from pathlib import Path
-import sys
-import shutil
-
 def move_exemplars():
     with open('functions/exemplars.txt', 'r') as f:
         f.readline() # strip header
@@ -21,9 +15,3 @@ def move_exemplars():
                         )
             except:
                 print("File does not exist")
-
-if __name__ == "__main__":
-    if len(sys.argv) != 1:
-        print(__doc__)
-        sys.exit(1)
-    move_exemplars()

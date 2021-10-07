@@ -1,14 +1,8 @@
-#!/usr/bin/env python3
 """
 takes prototypicality_rankings.txt for
 each subject and moves exemplars to 
 subj#/exemplars/<filename>_rank.wav
 """
-
-from pathlib import Path
-import os
-import sys
-import shutil
 
 def add_rank_to_vowel_filename():
     root = Path.cwd()
@@ -36,9 +30,3 @@ def add_rank_to_vowel_filename():
                 print(f"Renaming {subject_dir.parent.name}/modified/{filename} to {output_filename}")
             except:
                 print(f"File {subject_dir}/modified/{filename} does not exist, it was removed for being too short")
-
-if __name__ == "__main__":
-    if len(sys.argv) != 1:
-        print(__doc__)
-        sys.exit(1)
-    add_rank_to_vowel_filename()

@@ -12,6 +12,10 @@ import sys
 from pathlib import Path
 from shutil import copy2
 
+sys.path.append("functions")
+
+import add_rank_to_vowel_filename
+import move_exemplars
 
 def main() -> None:
     #import pdb
@@ -72,6 +76,12 @@ def main() -> None:
             "addpath('functions'); run('match_stim_rms.m'); quit",
         ]
     )
+
+    print("Adding rank to vowel filename")
+    add_rank_to_vowel_filename.add_rank_to_vowel_filename()
+
+    print("Move exemplars in exemplars.txt to exemplars/")
+    move_exemplars.move_exemplars()
 
 
 if __name__ == "__main__":

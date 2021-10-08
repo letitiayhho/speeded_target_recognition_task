@@ -28,25 +28,11 @@ function [block_type, trial_type_order, talker_order, n_trials] = get_talker_ord
         else
             while true
                 utterances = datasample(talker(j, :), 16)';
-                if check_repeats(utterances)
+                if check_repeats(utterances, 3)
                     break
                 end
             end
             talker_order = [talker_order; utterances];
         end
-    end
-    
-    % Don't allowed 4 consecutive utterances by the same talker
-    function [cont] = check_repeats(seq)
-        for k = 1:length(seq)-3
-            window = k:k+3;
-            if length(unique(seq(window))) == 1
-                % returns false if 3 consecutive stim are by the same
-                % talker
-                cont = false;
-                return
-            end
-        end
-        cont = true;
     end
 end

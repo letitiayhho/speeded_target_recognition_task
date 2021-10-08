@@ -3,14 +3,19 @@ function [stim_order, n_trials, trial_type, target_key]  = generate_stim_order(s
 
     % SET SEED
     rng(subject_number)
+    
+    % Get same key
+    target_key = get_target_key();
+    
+    % SET SEED for different blocks
+    seed = str2double(strcat(num2str(subject_number), num2str(block)));
+    rng(seed)
 
     % Get talker order
-%         [talker1, talker2, same, key, n_trials, same_key, block_type] = get_talker_order(block);
-    [block_type, trial_type, talker, istarget,...
-        key, target_key, n_trials] = get_talker_order(block);
+    [block_type, trial_type, talker, n_trials] = get_talker_order(block);
 
     % Get vowel order
-    [vowel, istarget, key, target_key] = get_vowel_order(n_trials);
+    [vowel, istarget, key, target_key] = get_vowel_order(n_trials, target_key);
     
     % Get exemplar order
     exemplar = get_exemplar_order(n_trials);

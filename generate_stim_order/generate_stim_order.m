@@ -15,7 +15,7 @@ function [stim_order, n_trials, trial_type, target_key]  = generate_stim_order(s
     [block_type, trial_type, talker, n_trials] = get_talker_order(block);
 
     % Get vowel order
-    [vowel, istarget, key, target_key] = get_vowel_order(n_trials, target_key);
+    [vowel, istarget, key] = get_vowel_order(n_trials, target_key);
     
     % Get exemplar order
     exemplar = get_exemplar_order(n_trials);

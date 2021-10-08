@@ -21,7 +21,7 @@ function [block_type, trial_type_order, talker_order, n_trials] = get_talker_ord
     trial_type_order = [];
 
     % Broadcast talker selection for each trial into each utterance
-    for j = 1:length(talker)
+    for j = 1:n_trials
         trial_type_order = [trial_type_order; repmat(trial_type(j), 16, 1)];
         if strcmp(trial_type(j), 'b')
             talker_order = [talker_order; repmat(talker(j, 1), 16, 1)];
@@ -35,4 +35,7 @@ function [block_type, trial_type_order, talker_order, n_trials] = get_talker_ord
             talker_order = [talker_order; utterances];
         end
     end
+    
+    % Turn block type into an array
+    block_type = repmat(block_type, n_trials*16, 1);
 end

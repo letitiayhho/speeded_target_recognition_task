@@ -17,3 +17,5 @@ notes
 *.png
 
 __pycache__
+
+*.txt

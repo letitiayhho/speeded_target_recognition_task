@@ -8,13 +8,13 @@ function [rt, resp] = present_stimulus(stim, ptb)
     Screen('Flip', ptb.window);
     
     % start collecting response
+    ListenChar(2)
     KbQueueCreate(ptb.keyboard);
-    ListenChar(2);
     KbQueueStart;
+    resp_start = GetSecs;
 
     % play audio
-    t0 = GetSecs + .001;
-    PsychPortAudio('Start', ptb.pahandle, 1, t0, 1);
+    PsychPortAudio('Start', ptb.pahandle, 1, resp_start, 1);
     
     % send trigger
     WaitSecs(.001); %length of 1 ms        
@@ -24,16 +24,35 @@ function [rt, resp] = present_stimulus(stim, ptb)
     [stim_start, ~, ~, ~] = PsychPortAudio('Stop', ptb.pahandle, 1, 1);
 
     % Collect response
-    [~, rt] = KbQueueCheck;
-    keylist = KbName(rt);
-    [rt, I] = min(rt(rt > 0)); % keep only first response
-    resp = char(keylist(I));
-    rt = rt - stim_start;
+%     pressed = 0;
+%     while ~pressed
+%         [pressed, rt] = KbQueueCheck(); % check response
+%     end
+    
+    pressed = 0;
+    times_up = 0;
+    while ~pressed
+        [pressed, rt] = KbQueueCheck(); %check response
+        times_up = GetSecs - resp_start > 0.5;
+        if times_up
+            break
+        end
+    end
+    
+    if pressed
+        keylist = KbName(rt);
+        [rt, I] = min(rt(rt > 0)); % keep only first response
+        resp = char(keylist(I));
+        rt = rt - stim_start;
+    else
+        resp = "";
+        rt = [];
+    end
 
     % Wait
-    WaitSecs(.2 + rand()*.2);
-    KbQueueStop;
-    KbQueueRelease;
+    WaitSecs(.2 + rand()*.2); % CHANGE THIS????
+%     KbQueueStop;
+%     KbQueueRelease;
     ListenChar(0); % renables matlab command window
 
     % end of accepting response

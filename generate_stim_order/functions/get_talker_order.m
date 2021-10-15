@@ -35,7 +35,4 @@ function [block_type, trial_type_order, talker_order, n_trials] = get_talker_ord
             talker_order = [talker_order; utterances];
         end
     end
-    
-    % Turn block type into an array
-    block_type = repmat(block_type, n_trials*16, 1);
 end

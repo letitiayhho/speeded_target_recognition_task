@@ -1,4 +1,4 @@
-function [stim_order, n_trials, trial_type, target_key]  = generate_stim_order(subject_number, block)
+function [stim_order, n_trials, block_type, target_key]  = generate_stim_order(subject_number, block)
     addpath('generate_stim_order/functions')
 
     % SET SEED
@@ -30,6 +30,6 @@ function [stim_order, n_trials, trial_type, target_key]  = generate_stim_order(s
     subject = repmat(subject_number, n_trials*16, 1);
 
     % CREATE TABLE
-    stim_order = table(subject, block, block_type, trial, trial_type,...
+    stim_order = table(subject, block, trial, trial_type,...
         token, vowel, talker, exemplar, istarget, key);
 end

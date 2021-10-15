@@ -1,6 +1,6 @@
 function find_exemplar_vowel(subject_number)
     % Load data
-    cd ~/src/speeded_vowel_identification/create_stim/
+    cd ~/src/speeded_target_recognition_task/create_stim/
     subject_dir = "subj" + subject_number;
     raw = readtable(fullfile(subject_dir, subject_dir + "-1.txt"), 'ReadVariableNames', true);
 

@@ -1,5 +1,5 @@
 %% Get f1 and f2 values of all subjects
-cd ~/src/speeded_vowel_identification_task/create_stim
+cd ~/src/speeded_target_recognition_task/create_stim
 subjects = dir('subj*');
 all_formants = table();
 

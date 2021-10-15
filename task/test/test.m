@@ -6,7 +6,7 @@ BLOCK = 1; % numeric
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %% Set up
-cd('~/src/speeded_vowel_identification/')
+cd('~/src/speeded_target_recognition_task/')
 addpath('task/functions')
 PsychJavaTrouble(1);
 

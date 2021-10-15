@@ -9,7 +9,7 @@ RTBOX = false; % logical
 PsychDebugWindowConfiguration
 
 %% Set up
-cd('~/src/speeded_vowel_identification_task')
+cd('~/src/speeded_target_recognition_task')
 addpath('generate_stim_order')
 addpath('task/functions')
 addpath('task/USTCRTBox_003')      

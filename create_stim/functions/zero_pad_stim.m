@@ -1,6 +1,6 @@
 % NORMALIZE BEFORE ZERO PADDING
 
-cd('/Users/letitiaho/src/speeded_vowel_identification')
+cd('/Users/letitiaho/src/speeded_target_recognition_task')
 dirs = dir('create_stim/subj*/exemplars/*.wav');
 path = {dirs(:).folder};
 filename = {dirs(:).name};

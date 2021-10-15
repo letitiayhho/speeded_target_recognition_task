@@ -4,7 +4,7 @@ clearvars;
 PsychPortAudio('Close'); % clear audio handles
 
 %% Set up
-cd('~/src/speeded_vowel_identification/')
+cd('~/src/speeded_target_recognition_task/')
 addpath('task/functions')
 
 % Constants

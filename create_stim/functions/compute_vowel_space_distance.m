@@ -1,5 +1,5 @@
 %% Load formants
-cd ~/src/speeded_vowel_identification/create_stim
+cd ~/src/speeded_target_recognition_task/create_stim
 all_formants = readtable('all_formants.txt');
 
 %% Plot vowel space of all subjects

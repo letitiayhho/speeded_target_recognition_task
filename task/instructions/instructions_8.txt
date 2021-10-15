@@ -4,4 +4,4 @@ As before, press the "m" if the vowel that plays is
 a target vowel, otherwise, press the "c".
 No feedback will be given for your answers.
 Please try your best to stay still and relaxed. 
-Good luck!
+Press any key to begin. Good luck!

@@ -23,12 +23,7 @@ function [rt, resp] = present_stimulus(stim, ptb)
     % stop audio
     [stim_start, ~, ~, ~] = PsychPortAudio('Stop', ptb.pahandle, 1, 1);
 
-    % Collect response
-%     pressed = 0;
-%     while ~pressed
-%         [pressed, rt] = KbQueueCheck(); % check response
-%     end
-    
+    % collect response
     pressed = 0;
     times_up = 0;
     while ~pressed
@@ -50,9 +45,7 @@ function [rt, resp] = present_stimulus(stim, ptb)
     end
 
     % Wait
-    WaitSecs(.2 + rand()*.2); % CHANGE THIS????
-%     KbQueueStop;
-%     KbQueueRelease;
+    WaitSecs(.2 + rand()*.2);
     ListenChar(0); % renables matlab command window
 
     % end of accepting response

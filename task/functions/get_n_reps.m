@@ -1,4 +1,4 @@
-function [n_reps] = get_n_reps(stim_order, block)
+function [n_trials] = get_n_trials(stim_order, block)
     stim_order = stim_order(stim_order.block == block, :);
-    n_reps = max(stim_order.utterance);
+    n_trials = max(stim_order.token);
 end

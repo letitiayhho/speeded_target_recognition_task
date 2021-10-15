@@ -1,10 +1,9 @@
 Welcome to the second set of training trials.
-
-Similar to the last block, you will receive feedback 
-for each answer. Please take note of the feedback and 
-try to be as accurate as possible.
-
+Similar to the last block, press the "m" if the vowel
+that plays is a target vowel, otherwise, press the "c".
+In this block you will receive feedback for each answer. 
+Please take note of the feedback and try to be as 
+accurate as possible.
 You may ask to redo the training trials at the end 
 of this block.
-
 The block will start after this slide.

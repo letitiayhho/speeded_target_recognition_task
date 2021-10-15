@@ -22,9 +22,3 @@ function instructions(ptb, block)
 %     ListenChar(0); % reenable typing into matlab
     
 end
-
-
-function [txt] = load_text_from(fpath)
-    txt = importdata(fpath);
-    txt = strjoin(txt, '\n');
-end

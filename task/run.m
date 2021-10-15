@@ -9,7 +9,7 @@ RTBOX = false; % logical
 PsychDebugWindowConfiguration
 
 %% Set up
-cd('~/src/speeded_vowel_identification/')
+cd('~/src/speeded_vowel_identification_task')
 addpath('task/functions')
 addpath('task/USTCRTBox_003')      
 PsychJavaTrouble(1);
@@ -44,7 +44,7 @@ for rep = 1:n_reps
     for v = 1:length(paths)
         [rt, resp] = present_stimulus(paths(v), PTB); % trigger sent here
         correct = check_answer(istarget(v), resp);
-        write_output(SUBJ_NUM, BLOCK, v, vowels(v, :), target, rt, resp, correct);
+        write_output(SUBJ_NUM, BLOCK, rep, v, vowels(v, :), target, rt, resp, correct);
         if IS_TRAINING
             give_feedback(correct, PTB);
         end

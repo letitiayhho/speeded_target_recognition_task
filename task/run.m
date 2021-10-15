@@ -10,6 +10,7 @@ PsychDebugWindowConfiguration
 
 %% Set up
 cd('~/src/speeded_vowel_identification_task')
+addpath('generate_stim_order')
 addpath('task/functions')
 addpath('task/USTCRTBox_003')      
 PsychJavaTrouble(1);
@@ -19,40 +20,36 @@ FS = 44100;
 IS_TRAINING = BLOCK == 1 || BLOCK == 2; % change training depending on block number
 
 % set up psychtoolbox and RTBox
-init_RTBox(RTBOX);
-PTB = init_psychtoolbox(FS);
+% init_RTBox(RTBOX);
+% PTB = init_psychtoolbox(FS);
 
 % Load stim order
-stim_file = ['generate_stim_order/output/', num2str(SUBJ_NUM), '_stim_order.txt'];
-STIM = readtable(stim_file);
+[STIM, N_TRIALS, TRIAL_TYPE, TARGET_KEY] = generate_stim_order(SUBJ_NUM, BLOCK);
 
 %% Display instructions
-instructions(PTB, BLOCK);
+% instructions(PTB, BLOCK);
 
 %% Task
-% loop through all reps in block
-n_reps = get_n_reps(STIM, BLOCK);
-
-for rep = 1:n_reps
-    [vowels, paths, target, istarget] = get_rep_stim(STIM, BLOCK, rep);
-
-    % loop through all stim in rep
-    WaitSecs(2)
-    fixation(PTB); % show fixation cross to start trial
-    present_target(PTB, target) % show target
-
-    for v = 1:length(paths)
-        [rt, resp] = present_stimulus(paths(v), PTB); % trigger sent here
-        correct = check_answer(istarget(v), resp);
-        write_output(SUBJ_NUM, BLOCK, rep, v, vowels(v, :), target, rt, resp, correct);
-        if IS_TRAINING
-            give_feedback(correct, PTB);
-        end
-    end
+for trial = 1:N_TRIALS
+    [vowel, path, trial_type, target, istarget] = get_trial_stim(STIM, BLOCK, trial);
+% 
+%     % loop through all stim in trial
+%     WaitSecs(2)
+%     fixation(PTB); % show fixation cross to start trial
+%     present_target(PTB, target) % show target
+% 
+%     for v = 1:length(path)
+%         [rt, resp] = present_stimulus(path(v), PTB); % trigger sent here
+%         correct = check_answer(istarget(v), resp);
+%         write_output(SUBJ_NUM, BLOCK, trial, TRIAL_TYPE(v), v, vowel(v, :), target, rt, resp, correct);
+%         if IS_TRAINING
+%             give_feedback(correct, PTB);
+%         end
+%     end
 end
 
 %% end block
-instructions(PTB, 0) 
+% instructions(PTB, 0) 
 
 sca; % screen clear all
 close all;

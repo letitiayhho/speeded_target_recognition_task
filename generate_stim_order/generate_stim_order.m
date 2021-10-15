@@ -24,12 +24,12 @@ function [stim_order, n_trials, trial_type, target_key]  = generate_stim_order(s
     block = repmat(block, n_trials*16, 1);
     trial = repmat(1:n_trials, 16, 1);
     trial = reshape(trial, size(trial, 1)*size(trial, 2), 1);
-    rep = repmat((1:16)', n_trials, 1);
+    token = repmat((1:16)', n_trials, 1);
 
     % Subject
     subject = repmat(subject_number, n_trials*16, 1);
 
     % CREATE TABLE
     stim_order = table(subject, block, block_type, trial, trial_type,...
-        rep, vowel, talker, exemplar, istarget, key);
+        token, vowel, talker, exemplar, istarget, key);
 end

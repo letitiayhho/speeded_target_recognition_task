@@ -1,14 +1,13 @@
-function [correct, miss] = check_answer(istarget, resp, target_key)
+function [correct, miss] = check_answer(istarget, resp)
     istarget = logical(istarget);
-    keys = ['c', 'm'];
-    not_target_key = keys(keys ~= target_key);
-    if resp == "" % catch empty answers
-        correct = 0;
-        miss = 1;
-    elseif istarget && strcmp(resp, target_key) % correctly identifies target
+
+    if istarget && strcmp(resp, "m") % correctly identifies target
         correct = 1;
         miss = 0;
-    elseif ~istarget && strcmp(resp, not_target_key) % correctly identifies non-targets
+    elseif istarget % miss a target
+        correct = 0;
+        miss = 1;
+    elseif ~istarget && strcmp(resp, "") % correctly skips non-targets
         correct = 1;
         miss = 0;
     else % all other cases

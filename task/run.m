@@ -24,10 +24,10 @@ init_RTBox(RTBOX);
 PTB = init_psychtoolbox(FS);
 
 % Load stim order
-[STIM, N_TRIALS, BLOCK_TYPE, TARGET_KEY] = generate_stim_order(SUBJ_NUM, BLOCK);
+[STIM, N_TRIALS, BLOCK_TYPE] = generate_stim_order(SUBJ_NUM, BLOCK);
 
 %% Display instructions
-update_instructions(BLOCK, TARGET_KEY)
+update_instructions(BLOCK)
 instructions(PTB, BLOCK);
 
 %% Task
@@ -41,7 +41,7 @@ for trial = 1:N_TRIALS
 
     for v = 1:length(path)
         [rt, resp] = present_stimulus(path(v), PTB); % trigger sent here
-        [correct, miss] = check_answer(istarget(v), resp, TARGET_KEY);
+        [correct, miss] = check_answer(istarget(v), resp);
         write_output(SUBJ_NUM, BLOCK, BLOCK_TYPE, trial, trial_type, v, vowel(v, :), target, rt, resp, correct);
         if IS_TRAINING
             give_feedback(correct, miss, PTB);

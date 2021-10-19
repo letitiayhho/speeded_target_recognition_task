@@ -1,8 +1,7 @@
 You will first be shown a target vowel on the screen, and
 then played a series of vowels.
-When you hear the target vowel press the "m" key. If you
-hear a vowel that is not the target vowel, press the "c"
-key. An "x" symbol will appear while each vowel is playing
+When you hear the target vowel press the "m" key. 
+An "x" symbol will appear while each vowel is playing
 to indicate when you may submit a response.
 You will need to listen carefully to each vowel as they
 will be presented quickly.

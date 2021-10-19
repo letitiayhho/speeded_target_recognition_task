@@ -1,6 +1,6 @@
 Welcome to the second set of training trials.
-Similar to the last block, press the "m" if the vowel
-that plays is a target vowel, otherwise, press the "c".
+Similar to the last block, press the "m" key if you
+hear a target vowel.
 In this block you will receive feedback for each answer. 
 Please take note of the feedback and try to be as 
 accurate as possible.

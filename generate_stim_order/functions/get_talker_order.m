@@ -1,5 +1,4 @@
-function [block_type, trial_type_order, talker_order, n_trials] = get_talker_order(block)
-    [block_type, n_trials] = get_block_type(block); 
+function [block_type, trial_type_order, talker_order, n_trials] = get_talker_order(block_type, n_trials)
     [talkers, trial_types] = get_block_talkers(block_type);   
 
     talker = [];

@@ -1,12 +1,18 @@
 function [stim_order, n_trials, block_type]  = generate_stim_order(subject_number, block)
     addpath('generate_stim_order/functions')
     
-    % SET SEED for different blocks
+    % SET SEET
+    rng(subject_number)
+    
+    % Get block type
+    [block_type, n_trials] = get_block_type(block); 
+    
+    % SET SEED to randomize trials within blocks
     seed = str2double(strcat(num2str(subject_number), num2str(block)));
     rng(seed)
 
     % Get talker order
-    [block_type, trial_type, talker, n_trials] = get_talker_order(block);
+    [block_type, trial_type, talker, n_trials] = get_talker_order(block_type, n_trials);
 
     % Get vowel order
     [vowel, istarget] = get_vowel_order(n_trials);

@@ -1,4 +1,4 @@
-function [vowel_order, istarget, key] = choose_distractor_order(target, target_key)
+function [vowel_order, istarget] = choose_distractor_order(target)
     istarget = zeros(16, 1);
 
     % List of targets and distractors
@@ -25,15 +25,4 @@ function [vowel_order, istarget, key] = choose_distractor_order(target, target_k
     end
     vowel_order(indexes, 1) = target;
     istarget(indexes) = 1;
-    key = get_key(istarget, target_key);
-    
-    function key = get_key(istarget, target_key)
-        keys = ["c", "m"];
-        keys(strcmp(keys, target_key)) = [];
-        non_target_key = keys;
-        
-        key = num2str(istarget);
-        key(logical(istarget)) = target_key;
-        key(~logical(istarget)) = non_target_key;
-    end
 end

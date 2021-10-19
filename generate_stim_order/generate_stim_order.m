@@ -1,11 +1,5 @@
-function [stim_order, n_trials, block_type, target_key]  = generate_stim_order(subject_number, block)
+function [stim_order, n_trials, block_type]  = generate_stim_order(subject_number, block)
     addpath('generate_stim_order/functions')
-
-    % SET SEED
-    rng(subject_number)
-    
-    % Get same key
-    target_key = get_target_key();
     
     % SET SEED for different blocks
     seed = str2double(strcat(num2str(subject_number), num2str(block)));
@@ -15,7 +9,7 @@ function [stim_order, n_trials, block_type, target_key]  = generate_stim_order(s
     [block_type, trial_type, talker, n_trials] = get_talker_order(block);
 
     % Get vowel order
-    [vowel, istarget, key] = get_vowel_order(n_trials, target_key);
+    [vowel, istarget] = get_vowel_order(n_trials);
     
     % Get exemplar order
     exemplar = get_exemplar_order(n_trials*16);
@@ -31,5 +25,5 @@ function [stim_order, n_trials, block_type, target_key]  = generate_stim_order(s
 
     % CREATE TABLE
     stim_order = table(subject, block, trial, trial_type,...
-        token, vowel, talker, exemplar, istarget, key);
+        token, vowel, talker, exemplar, istarget);
 end

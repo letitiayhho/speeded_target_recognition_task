@@ -45,7 +45,7 @@ function [rt, resp] = present_stimulus(stim, ptb)
     end
 
     % Wait
-    WaitSecs(.2 + rand()*.2);
+    WaitSecs(.25); % add a jitter using EEG WaitSecs(.2 + rand()*.2)
     ListenChar(0); % renables matlab command window
 
     % end of accepting response

@@ -5,3 +5,4 @@ An "x" symbol will appear while each vowel is playing
 to indicate when you may submit a response.
 You will need to listen carefully to each vowel as they
 will be presented quickly.
+A "+" symbol will indicate the start of each new trial.

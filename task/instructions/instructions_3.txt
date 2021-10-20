@@ -1,9 +1,3 @@
-While you are listening to the vowels please 
-remain as still as possible, as movements
-(even slight head movements and eye blinks)
-will interfere with the data you are providing.
-
-Each trial will begin with a fixation cross "+", 
-if you have to move at any time during the experiment
-please confine this activity to when the "+" is shown.
-Press any key during the "+" to begin the next trial.
+In this block you will receive feedback after each answer.
+Please pay attention to the feedback and try to answer
+as accurately as possible.

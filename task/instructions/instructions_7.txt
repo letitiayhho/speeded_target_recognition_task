@@ -1,9 +1,3 @@
-Welcome to the second set of training trials.
-Similar to the last block, press the "m" key if you
-hear a target vowel.
-In this block you will receive feedback for each answer. 
-Please take note of the feedback and try to be as 
-accurate as possible.
-You may ask to redo the training trials at the end 
-of this block.
-Press any key to begin.
+Thank you.
+This is the end of the block. Please take a short break
+and let the experimenter know if you have any questions.

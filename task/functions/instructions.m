@@ -1,16 +1,14 @@
 function instructions(ptb, block)
     
     if block == 1  
-        l = 1:6; % overall instructions
-    elseif block == 2
-        l = 7; % instructions before training block 2
-    elseif ismember(block, [3 4 5 6])
-        l = 8; % instructions before experiment blocks
+        l = 1:5; % training instructions
+    elseif ismember(block, [2 3 4 5])
+        l = 6; % instructions before experiment blocks
     elseif block == 0 
-        l = 9; % end of block   
+        l = 7; % end of block   
     end
     
-%     ListenChar(-1); % disable typing into matlab window
+    ListenChar(-1); % disable typing into matlab window
     for i = 1:length(l)
         fpath = ['task/instructions/instructions_' num2str(l(i)) '.txt'];
         txt = load_text_from(fpath);
@@ -19,6 +17,6 @@ function instructions(ptb, block)
         Screen('Flip', ptb.window);
         KbPressWait();
     end
-%     ListenChar(0); % reenable typing into matlab
+    ListenChar(0); % reenable typing into matlab
     
 end

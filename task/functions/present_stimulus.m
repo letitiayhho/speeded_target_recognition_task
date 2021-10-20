@@ -15,10 +15,6 @@ function [rt, resp] = present_stimulus(stim, ptb)
 
     % play audio
     PsychPortAudio('Start', ptb.pahandle, 1, resp_start, 1);
-    
-    % send trigger
-    WaitSecs(.001); %length of 1 ms        
-    RTBox('TTL', 255)
 
     % stop audio
     [stim_start, ~, ~, ~] = PsychPortAudio('Stop', ptb.pahandle, 1, 1);
@@ -34,6 +30,8 @@ function [rt, resp] = present_stimulus(stim, ptb)
         end
     end
     
+%     % ENDS EARLY IF KEY IS PRESSED
+    
     if pressed
         keylist = KbName(rt);
         [rt, I] = min(rt(rt > 0)); % keep only first response
@@ -47,6 +45,10 @@ function [rt, resp] = present_stimulus(stim, ptb)
     % Wait
     WaitSecs(.25); % add a jitter using EEG WaitSecs(.2 + rand()*.2)
     ListenChar(0); % renables matlab command window
+    
+    pressed
+    duration_psychtoolbox = stim_start - GetSecs
+    duration = resp_start - GetSecs
 
     % end of accepting response
     Screen('Flip', ptb.window);

@@ -1,9 +1,7 @@
-function give_feedback(correct, miss, ptb)
+function give_feedback(correct, ptb)
     
     if correct
         feedback = 'correct';
-    elseif miss
-        feedback = 'no answer recorded';
     else
         feedback = 'incorrect';
     end

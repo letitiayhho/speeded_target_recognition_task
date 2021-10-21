@@ -29,7 +29,7 @@ instructions(PTB, BLOCK);
 
 %% Task
 for trial = 1:N_TRIALS
-    [vowel, path, istarget, target, trial_type] = get_trial_stim(STIM, BLOCK, trial);
+    [vowel, path, istarget, target, trial_type] = get_trial_stim(STIM, trial);
 
     % loop through all stim in trial
     WaitSecs(2)

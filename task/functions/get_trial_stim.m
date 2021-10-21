@@ -1,6 +1,5 @@
-function [vowel, path, istarget, target, trial_type] = get_trial_stim(stim_order, block, trial)
+function [vowel, path, istarget, target, trial_type] = get_trial_stim(stim_order, trial)
     % subset by block and trial
-    stim_order = stim_order(stim_order.block == block, :);
     stim_order = stim_order(stim_order.trial == trial, :);
     
     % get details

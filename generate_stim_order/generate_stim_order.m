@@ -1,4 +1,4 @@
-function [stim_order, n_trials, block_type]  = generate_stim_order(subject_number, block)
+function [stim_order, n_trials]  = generate_stim_order(subject_number, block)
     addpath('generate_stim_order/functions')
     
     % SET SEET
@@ -12,7 +12,7 @@ function [stim_order, n_trials, block_type]  = generate_stim_order(subject_numbe
     rng(seed)
 
     % Get talker order
-    [block_type, trial_type, talker, n_trials] = get_talker_order(block_type, n_trials);
+    [trial_type, talker, n_trials] = get_talker_order(block_type, n_trials);
 
     % Get vowel order
     [vowel, istarget] = get_vowel_order(n_trials);
@@ -22,6 +22,7 @@ function [stim_order, n_trials, block_type]  = generate_stim_order(subject_numbe
 
     % Block 
     block = repmat(block, n_trials*16, 1);
+    block_type = repmat(block_type, n_trials, 1);
     trial = repmat(1:n_trials, 16, 1);
     trial = reshape(trial, size(trial, 1)*size(trial, 2), 1);
     token = repmat((1:16)', n_trials, 1);
@@ -30,6 +31,6 @@ function [stim_order, n_trials, block_type]  = generate_stim_order(subject_numbe
     subject = repmat(subject_number, n_trials*16, 1);
 
     % CREATE TABLE
-    stim_order = table(subject, block, trial, trial_type,...
+    stim_order = table(subject, block, block_type, trial, trial_type,...
         token, vowel, talker, exemplar, istarget);
 end

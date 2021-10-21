@@ -15,16 +15,13 @@ addpath('task/functions')
 addpath('task/USTCRTBox_003')      
 PsychJavaTrouble(1);
 
-% other constants      
-FS = 44100;
-IS_TRAINING = BLOCK == 1 || BLOCK == 2; % change training depending on block number
-
 % set up psychtoolbox and RTBox
 init_RTBox(RTBOX);
+FS = 44100;
 PTB = init_psychtoolbox(FS);
 
 % Load stim order
-[STIM, N_TRIALS, BLOCK_TYPE] = generate_stim_order(SUBJ_NUM, BLOCK);
+[STIM, N_TRIALS] = generate_stim_order(SUBJ_NUM, BLOCK);
 
 %% Display instructions
 update_instructions(BLOCK)
@@ -44,7 +41,7 @@ for trial = 1:N_TRIALS
         [correct] = check_answer(istarget(v), resp);
         write_output(SUBJ_NUM, BLOCK, BLOCK_TYPE, trial, trial_type, v,...
             vowel(v, :), target, istarget(v), rt, resp, correct);
-        if IS_TRAINING
+        if BLOCK == 1
             give_feedback(correct, PTB);
         end
     end

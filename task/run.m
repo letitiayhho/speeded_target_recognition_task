@@ -29,18 +29,17 @@ instructions(PTB, BLOCK);
 
 %% Task
 for trial = 1:N_TRIALS
-    [vowel, path, istarget, target, trial_type] = get_trial_stim(STIM, trial);
+    [trial_stim, path, istarget, target] = get_trial_stim(STIM, trial);
 
-    % loop through all stim in trial
     WaitSecs(2)
     fixation(PTB); % show fixation cross to start trial
     present_target(PTB, target) % show target
 
+    % loop through all stim in trial
     for v = 1:length(path)
         [rt, resp] = present_stimulus(path(v), PTB); % trigger sent here
-        [correct] = check_answer(istarget(v), resp);
-        write_output(SUBJ_NUM, BLOCK, BLOCK_TYPE, trial, trial_type, v,...
-            vowel(v, :), target, istarget(v), rt, resp, correct);
+        correct = check_answer(istarget(v), resp);
+        write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), rt, resp, correct);
         if BLOCK == 1
             give_feedback(correct, PTB);
         end

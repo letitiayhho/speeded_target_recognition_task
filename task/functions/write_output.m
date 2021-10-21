@@ -1,17 +1,18 @@
-function write_output(subject, block, block_type, trial, trial_type, token, vowel, target, istarget, rt, resp, correct)
+% function write_output(subject, block, block_type, trial, trial_type, token, vowel, target, istarget, rt, resp, correct)
+function write_output(subject, block, stim, rt, resp, correct)
 
     % get output filename for this subject and black
     fpath = ['task/output/subj' num2str(subject) 'block' num2str(block) '.csv'];
 
-    row = {num2str(subject), num2str(block), char(block_type), num2str(trial),...
-        char(trial_type), num2str(token), char(vowel), target, num2str(istarget),...
-        num2str(rt), num2str(resp), num2str(correct)};
-    row = strjoin(row, ',');
-    row = ['\n' row];
+    % create data frame
+    resp = string(resp);
+    row = [stim, table(rt, resp, correct)];
+    row = strjoin(table2array(row), ',');
+    row = strcat('\n', row);
     
     if ~(exist(fpath, 'file') == 2) % ~isfile(fpath) in later versions
-        cols = 'subject,block,block_type,trial,trial_type,token,vowel,target,istarget,rt,resp,correct';
-        row = [cols row];
+        cols = strjoin([stim.Properties.VariableNames, 'rt,resp,correct'], ',');
+        row = strcat(cols, row);
         f = fopen(fpath, 'wt'); 
         fprintf(f, row);
         fclose(f);

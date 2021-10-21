@@ -37,8 +37,8 @@ function [rt, resp] = present_stimulus(stim, ptb)
         resp = char(keylist(I));
         rt = rt - stim_start;
     else
-        resp = "";
-        rt = [];
+        resp = "NaN";
+        rt = "NaN";
     end
 
     % end of accepting response

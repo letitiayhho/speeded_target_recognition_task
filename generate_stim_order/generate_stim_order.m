@@ -22,7 +22,7 @@ function [stim_order, n_trials]  = generate_stim_order(subject_number, block)
 
     % Block 
     block = repmat(block, n_trials*16, 1);
-    block_type = repmat(block_type, n_trials, 1);
+    block_type = repmat(block_type, n_trials*16, 1);
     trial = repmat(1:n_trials, 16, 1);
     trial = reshape(trial, size(trial, 1)*size(trial, 2), 1);
     token = repmat((1:16)', n_trials, 1);

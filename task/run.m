@@ -2,11 +2,9 @@
 
 SUBJ_NUM = 0; % numeric
 BLOCK = 1; % numeric
-RTBOX = false; % logical
+test = false; % logical
 
 %%%%%%%%%%%%%%%%%%%%%%%
-      
-PsychDebugWindowConfiguration
 
 %% Set up
 cd('~/src/speeded_target_recognition_task')
@@ -14,6 +12,11 @@ addpath('generate_stim_order')
 addpath('task/functions')
 addpath('task/USTCRTBox_003')      
 PsychJavaTrouble(1);
+
+% run with psychtoolbox debugger if testing
+if test
+    PsychDebugWindowConfiguration
+end
 
 % set up psychtoolbox and RTBox
 init_RTBox(RTBOX);

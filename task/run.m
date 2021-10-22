@@ -2,7 +2,7 @@
 
 SUBJ_NUM = 0; % numeric
 BLOCK = 1; % numeric
-test = false; % logical
+test = true; % logical
 
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -16,7 +16,7 @@ PsychJavaTrouble(1);
 % run with psychtoolbox debugger if testing
 if test
     PsychDebugWindowConfiguration
-    RTBOX = false
+    RTBOX = false;
 end
 
 % set up psychtoolbox and RTBox

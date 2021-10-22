@@ -14,7 +14,7 @@ function [rt] = present_stimulus(stim, ptb)
     Screen('Flip', ptb.window);
     
     % play audio
-    stim_start = PsychPortAudio('Start', ptb.pahandle, 1, resp_start, 1);
+    stim_start = PsychPortAudio('Start', ptb.pahandle, 1, 0, 1);
 
     % stop audio
     PsychPortAudio('Stop', ptb.pahandle, 1, 1);

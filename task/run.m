@@ -16,12 +16,13 @@ PsychJavaTrouble(1);
 % run with psychtoolbox debugger if testing
 if test
     PsychDebugWindowConfiguration
+    RTBOX = false
 end
 
 % set up psychtoolbox and RTBox
-init_RTBox(RTBOX);
 FS = 44100;
 PTB = init_psychtoolbox(FS);
+init_RTBox(RTBOX);
 
 % Load stim order
 [STIM, N_TRIALS] = generate_stim_order(SUBJ_NUM, BLOCK);

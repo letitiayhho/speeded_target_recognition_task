@@ -10,5 +10,6 @@ function init_RTBox(rtbox)
     RTBox('DebounceInterval', 0);
     Priority(1); % prioritize timing
     RTBox('TTLWidth', 0.001); % need if sending multiple consecutively
+    RTBox('ButtonNames', {'1', '2', '3', '4'})
 
 end

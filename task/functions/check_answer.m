@@ -1,7 +1,7 @@
 function [correct] = check_answer(istarget, resp)
     istarget = logical(istarget);
 
-    if istarget && strcmp(resp, "4") % correctly identifies target
+    if istarget && ~isnan(resp) % correctly identifies target
         correct = 1;
     elseif istarget && isnan(resp) % miss a target
         correct = 0;

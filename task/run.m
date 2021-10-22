@@ -41,9 +41,9 @@ for trial = 1:N_TRIALS
 
     % loop through all stim in trial
     for v = 1:length(path)
-        [rt, resp] = present_stimulus(path(v), PTB); % trigger sent here
-        correct = check_answer(istarget(v), resp);
-        write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), rt, resp, correct);
+        rt = present_stimulus(path(v), PTB); % trigger sent here
+        correct = check_answer(istarget(v), rt);
+        write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), rt, correct);
         if BLOCK == 1
             give_feedback(correct, PTB);
         end

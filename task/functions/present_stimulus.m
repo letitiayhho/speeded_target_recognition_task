@@ -1,4 +1,4 @@
-function [rt, resp] = present_stimulus(stim, ptb)
+function [rt] = present_stimulus(stim, ptb)
 
     % start collecting response
     ListenChar(2);
@@ -21,7 +21,7 @@ function [rt, resp] = present_stimulus(stim, ptb)
 
     % collect response
     timeout = .5;
-    rt = RTBox(timeout);
+    rt = RTBox('sound', timeout);
 
     % check response
     if isempty(rt) % no response

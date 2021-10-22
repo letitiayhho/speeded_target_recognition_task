@@ -1,11 +1,11 @@
 function [correct] = check_answer(istarget, resp)
     istarget = logical(istarget);
 
-    if istarget && strcmp(resp, "m") % correctly identifies target
+    if istarget && strcmp(resp, "4") % correctly identifies target
         correct = 1;
-    elseif istarget && strcmp(resp, "NaN") % miss a target
+    elseif istarget && isnan(resp) % miss a target
         correct = 0;
-    elseif ~istarget && strcmp(resp, "NaN") % correctly skips non-targets
+    elseif ~istarget && isnan(resp) % correctly skips non-targets
         correct = 1;
     else % all other cases
         correct = 0;

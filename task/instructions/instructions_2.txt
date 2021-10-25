@@ -1,6 +1,7 @@
 You will first be shown a target vowel on the screen, and
 then played a series of vowels.
-When you hear the target vowel press the "m" key. 
+When you hear the target vowel press any key on the
+response box. 
 An "x" symbol will appear while each vowel is playing
 to indicate when you may submit a response.
 You will need to listen carefully to each vowel as they

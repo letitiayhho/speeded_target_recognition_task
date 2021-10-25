@@ -1,0 +1,8 @@
+This experiment block number <block>. There will be four 
+total experiment blocks. 
+
+As before, press the "m" key when you hear the target vowel
+
+No feedback will be given for your answers.
+Please try your best to stay still and relaxed. 
+Press any key to begin. Good luck!

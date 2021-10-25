@@ -118,3 +118,8 @@ so let's check their vowels first (AH, EE, EH, OO)
 
 wait what, not all durations were modified?
 maybe we should not use EE, replace EE with IH (AH, EH, IH, OO)
+
+15- X
+16- Y
+22- A
+24- B

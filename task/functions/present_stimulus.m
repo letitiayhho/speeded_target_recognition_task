@@ -1,4 +1,4 @@
-function [rt] = present_stimulus(stim, ptb)
+function [stim_start, rt] = present_stimulus(stim, ptb)
 
     % start collecting response
     ListenChar(2);
@@ -20,14 +20,23 @@ function [rt] = present_stimulus(stim, ptb)
     PsychPortAudio('Stop', ptb.pahandle, 1, 1);
 
     % collect response
-    timeout = .5;
-    rt = RTBox('sound', timeout);
+    timeout = 0;
+    rt = [];
+    while ~timeout
+        this_rt = RTBox(); % RTBox('sound', timeout) removed, FIX
+        timeout = GetSecs - stim_start > 0.5;
+        if ~isempty(this_rt)
+            rt = this_rt
+        end
+    end
+%     rt = RTBox(timeout); % RTBox('sound', timeout) removed, FIX
 
     % check response
     if isempty(rt) % no response
-        rt = nan;
-    end 
-    rt = rt - stim_start; %  response time
+        rt = "nan";
+    else 
+        rt = rt - stim_start; %  response time
+    end
     if numel(rt) > 1 % more than 1 response
         ind = find(rt>0,1); % use 1st proper rt
         rt = rt(ind);

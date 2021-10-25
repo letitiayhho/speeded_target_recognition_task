@@ -7,7 +7,7 @@ test = true; % logical
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %% Set up
-cd('~/src/speeded_target_recognition_task')
+cd('C:\Users\nusbuamlab\Desktop\speeded_target_recognition_task')
 addpath('generate_stim_order')
 addpath('task/functions')
 addpath('task/USTCRTBox_003')      

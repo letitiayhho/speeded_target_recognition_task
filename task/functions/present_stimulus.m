@@ -23,23 +23,18 @@ function [stim_start, rt] = present_stimulus(stim, ptb)
     timeout = 0;
     rt = [];
     while ~timeout
-        this_rt = RTBox(); % RTBox('sound', timeout) removed, FIX
-        timeout = GetSecs - stim_start > 0.5;
-        if ~isempty(this_rt)
-            rt = this_rt
+        if isempty(rt) % prevent a second response from being recorded
+            this_rt = RTBox(); % RTBox('sound', timeout) removed, FIX
         end
+        if ~isempty(this_rt)
+            rt = this_rt - stim_start;
+        end
+        timeout = GetSecs - stim_start > 0.5;
     end
-%     rt = RTBox(timeout); % RTBox('sound', timeout) removed, FIX
 
     % check response
     if isempty(rt) % no response
         rt = "nan";
-    else 
-        rt = rt - stim_start; %  response time
-    end
-    if numel(rt) > 1 % more than 1 response
-        ind = find(rt>0,1); % use 1st proper rt
-        rt = rt(ind);
     end
 
     % end of accepting response

@@ -2,7 +2,7 @@
 
 SUBJ_NUM = 0; % numeric
 BLOCK = 1; % numeric
-test = true; % logical
+test = false; % logical
 
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -10,13 +10,14 @@ test = true; % logical
 cd('C:\Users\nusbuamlab\Desktop\speeded_target_recognition_task')
 addpath('generate_stim_order')
 addpath('task/functions')
-addpath('task/USTCRTBox_003')      
+addpath('task/USTCRTBox_003')   
 PsychJavaTrouble(1);
 
 % run with psychtoolbox debugger if testing
 if test
-    PsychDebugWindowConfiguration
     RTBOX = false;
+else
+    RTBOX = true;
 end
 
 % set up psychtoolbox and RTBox
@@ -28,8 +29,8 @@ init_RTBox(RTBOX);
 [STIM, N_TRIALS] = generate_stim_order(SUBJ_NUM, BLOCK);
 
 %% Display instructions
-update_instructions(BLOCK)
-instructions(PTB, BLOCK);
+% update_instructions(BLOCK)
+% instructions(PTB, BLOCK);
 
 %% Task
 for trial = 1:N_TRIALS
@@ -41,9 +42,9 @@ for trial = 1:N_TRIALS
 
     % loop through all stim in trial
     for v = 1:length(path)
-        rt = present_stimulus(path(v), PTB); % trigger sent here
+        [stim_start, rt] = present_stimulus(path(v), PTB); % trigger sent here
         correct = check_answer(istarget(v), rt);
-        write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), rt, correct);
+        write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), stim_start, rt, correct);
         if BLOCK == 1
             give_feedback(correct, PTB);
         end

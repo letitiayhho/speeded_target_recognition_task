@@ -6,6 +6,7 @@ function init_RTBox(rtbox)
     end
 
     RTBox('UntilTimeout', false); % Open RT box if hasn't
+    RTBox('enable', 'sound');
     RTBox('clear');
     RTBox('DebounceInterval', 0);
     Priority(1); % prioritize timing

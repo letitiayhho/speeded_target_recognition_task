@@ -29,8 +29,8 @@ init_RTBox(RTBOX);
 [STIM, N_TRIALS] = generate_stim_order(SUBJ_NUM, BLOCK);
 
 %% Display instructions
-update_instructions(BLOCK)
-instructions(PTB, BLOCK);
+% update_instructions(BLOCK)
+% instructions(PTB, BLOCK);
 
 %% Task
 for trial = 1:N_TRIALS
@@ -42,9 +42,9 @@ for trial = 1:N_TRIALS
 
     % loop through all stim in trial
     for v = 1:length(path)
-        [stim_start, rt] = present_stimulus(path(v), PTB); % trigger sent here
+        rt = present_stimulus(path(v), PTB); % trigger sent here
         correct = check_answer(istarget(v), rt);
-        write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), stim_start, rt, correct);
+        write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), rt, correct);
         if BLOCK == 1
             give_feedback(correct, PTB);
         end

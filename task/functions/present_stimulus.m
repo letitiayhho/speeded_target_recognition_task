@@ -1,4 +1,4 @@
-function [stim_start, rt] = present_stimulus(stim, ptb)
+function rt = present_stimulus(stim, ptb)
 
     % start collecting response
     ListenChar(2);
@@ -24,10 +24,10 @@ function [stim_start, rt] = present_stimulus(stim, ptb)
     rt = [];
     while ~timeout
         if isempty(rt) % prevent a second response from being recorded
-            this_rt = RTBox(); % RTBox('sound', timeout) removed, FIX
+            [this_rt, event] = RTBox('sound', 0.5);
         end
         if ~isempty(this_rt)
-            rt = this_rt - stim_start;
+            rt = this_rt;
         end
         timeout = GetSecs - stim_start > 0.5;
     end

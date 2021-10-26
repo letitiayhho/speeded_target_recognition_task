@@ -7,7 +7,7 @@ test = false; % logical
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %% Set up
-cd('C:\Users\nusbuamlab\Desktop\speeded_target_recognition_task')
+cd('C:\Users\Nusbaum Lab\Desktop\speeded_target_recognition_task')
 addpath('generate_stim_order')
 addpath('task/functions')
 addpath('task/USTCRTBox_003')   
@@ -29,8 +29,8 @@ init_RTBox(RTBOX);
 [STIM, N_TRIALS] = generate_stim_order(SUBJ_NUM, BLOCK);
 
 %% Display instructions
-% update_instructions(BLOCK)
-% instructions(PTB, BLOCK);
+update_instructions(BLOCK)
+instructions(PTB, BLOCK);
 
 %% Task
 for trial = 1:N_TRIALS

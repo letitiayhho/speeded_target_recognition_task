@@ -1,0 +1,5 @@
+# Ignore everything in this dir
+*
+# Except this file
+!.gitignore
+# This will keep the directory tracked by git so new output files will have somewhere to be written to when the repo is cloned

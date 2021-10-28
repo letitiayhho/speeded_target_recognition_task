@@ -12,6 +12,7 @@ addpath('generate_stim_order')
 addpath('task/functions')
 addpath('task/USTCRTBox_003')   
 PsychJavaTrouble(1);
+isWindowsAdmin;
 
 % run with psychtoolbox debugger if testing
 if TEST

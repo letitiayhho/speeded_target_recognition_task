@@ -2,7 +2,7 @@
 
 SUBJ_NUM = 0; % numeric
 BLOCK = 1; % numeric
-test = false; % logical
+TEST = false; % logical
 
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -14,7 +14,7 @@ addpath('task/USTCRTBox_003')
 PsychJavaTrouble(1);
 
 % run with psychtoolbox debugger if testing
-if test
+if TEST
     RTBOX = false;
 else
     RTBOX = true;

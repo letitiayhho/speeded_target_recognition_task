@@ -29,8 +29,8 @@ init_RTBox(RTBOX);
 [STIM, N_TRIALS] = generate_stim_order(SUBJ_NUM, BLOCK);
 
 %% Display instructions
-% update_instructions(BLOCK)
-% instructions(PTB, BLOCK);
+update_instructions(BLOCK)
+instructions(PTB, BLOCK);
 
 %% Task
 for trial = 1:N_TRIALS

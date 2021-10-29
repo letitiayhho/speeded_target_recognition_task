@@ -33,5 +33,5 @@ function ptb = init_psychtoolbox(Fs)
     starttime = PsychPortAudio('Start', ptb.pahandle, 1, t0, 1);
     WaitSecs(1); 
     endtime = PsychPortAudio('Stop', ptb.pahandle, 1, 1);
-%      
+      
 end

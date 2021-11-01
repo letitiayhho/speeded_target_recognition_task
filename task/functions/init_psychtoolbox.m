@@ -18,7 +18,7 @@ function ptb = init_psychtoolbox(Fs)
     
     %% Audio set up
     InitializePsychSound(1); % argument of 1 gets you really nice latencies   
-    ptb.pahandle = PsychPortAudio('Open', 5, 1, 1, Fs, 2); % MIGHT HAVE TO ADJUST THIS
+    ptb.pahandle = PsychPortAudio('Open', [], [], 3, Fs, 2); % MIGHT HAVE TO ADJUST THIS
 
     if ismac % since this can cause trouble on other platforms
         Priority(9); % tell the computer we're important

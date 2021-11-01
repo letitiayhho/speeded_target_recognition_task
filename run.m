@@ -12,6 +12,7 @@ addpath('generate_stim_order')
 addpath('task/functions')
 addpath('task/USTCRTBox_003')   
 PsychJavaTrouble(1);
+isWindowsAdmin;
 
 % run with psychtoolbox debugger if testing
 if TEST
@@ -36,7 +37,7 @@ instructions(PTB, BLOCK);
 for trial = 1:N_TRIALS
     [trial_stim, path, istarget, target] = get_trial_stim(STIM, trial);
 
-    WaitSecs(2)
+    WaitSecs(2);
     fixation(PTB); % show fixation cross to start trial
     present_target(PTB, target) % show target
 

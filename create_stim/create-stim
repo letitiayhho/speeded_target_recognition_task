@@ -42,6 +42,16 @@ def main() -> None:
             os.chmod(modified_wav, 0o700)
             modified_wavs.append(modified_wav)
 
+    print("Clipping to start of vowel")
+    subprocess.check_output(
+        [
+            "matlab",
+            "-nodisplay",
+            "-r",
+            "addpath('functions'); run('clip_to_vowel_start.m'); quit",
+        ]
+    )
+
     print("Extending vowel durations")
     for wav in modified_wavs:
         print(wav)
@@ -80,11 +90,11 @@ def main() -> None:
     print("Adding rank to vowel filename")
     add_rank_to_vowel_filename.add_rank_to_vowel_filename()
 
-    print("Move exemplars in exemplars.txt to exemplars/")
+    print("Move exemplars in exemplars.txt to ../stim")
     move_exemplars.move_exemplars()
 
-    print('Rename "AH" to "AA"')
-    rename_AH_to_AA.rename_AH_to_AA()
+    #print('Rename "AH" to "AA"')
+    #rename_AH_to_AA.rename_AH_to_AA()
 
 
 if __name__ == "__main__":

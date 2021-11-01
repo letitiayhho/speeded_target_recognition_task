@@ -10,7 +10,7 @@ for i = 1:length(path)
     stim = fullfile(char(path(i)), char(filename(i)));
     fprintf(1, [stim, '\n'])
 
-    % zero pad
+    % zero pad TECHNICALLY ILLEGAL, fix the whole chain please
     [y, Fs] = audioread(stim);
     y_new = zeros(Fs/2,1);
     y_new(1:length(y)) = y;

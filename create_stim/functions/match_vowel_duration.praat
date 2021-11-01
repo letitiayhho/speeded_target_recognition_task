@@ -8,7 +8,7 @@ nocheck Remove
 final_duration = 200
 
 # Get vowel duration
-filename$ = "/Users/letitiaho/src/speeded_vowel_identification_task/create_stim/" + subject_dir$ + "/modified/" + vowel$ + ".wav"
+filename$ = "/Users/letitiaho/src/speeded_target_recognition_task/create_stim/" + subject_dir$ + "/modified/" + vowel$ + ".wav"
 Read from file: filename$
 selectObject: "Sound " + vowel$
 Copy: vowel$ + "_copy"

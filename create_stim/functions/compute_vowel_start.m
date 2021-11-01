@@ -2,7 +2,7 @@
     thresholds = 0.00001:0.00001:0.00005;
 
     cd('/Users/letitiaho/src/speeded_target_recognition_task')
-    paths = dir('stim/*/*.wav');
+    paths = dir('stim_copy/*/*.wav');
     subject = [];
     vowel = [];
     start_sample = [];

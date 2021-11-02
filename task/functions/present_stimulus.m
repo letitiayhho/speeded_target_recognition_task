@@ -6,11 +6,11 @@ function rt = present_stimulus(stim, ptb)
     % load audio buffer
     [aud, ~] = audioread(stim);
     PsychPortAudio('FillBuffer', ptb.pahandle, [aud'; aud']);
-    PsychPortAudio('Stop', ptb.pahandle) % this makes 'start' faster
+    PsychPortAudio('Stop', ptb.pahandle); % this makes 'start' faster
     
     % control soa
     soa = 0.75;
-    WaitSecs(soa-toc); % move this into present stim, wait after buffer is loaded
+    WaitSecs(soa-toc); 
     tic;
     
     % show accepting response
@@ -29,16 +29,13 @@ function rt = present_stimulus(stim, ptb)
         ind = find(rt>0, 1); % find first actual response
         rt = rt(ind); 
     end
-    if isempty(rt)
+        
+    % wait till end of trial
+    if rt > 0
+        WaitSecs(0.5-rt);
+    else
         rt = "nan";
     end
-        
-%     % wait till end of trial
-%     if rt > 0
-%         WaitSecs(0.5-rt);
-%     else
-%         rt = "nan";
-%     end
 
     % end of accepting response
     Screen('Flip', ptb.window);

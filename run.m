@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%% UPDATE THIS SECTION BEFORE EACH SUBJECT/TEST
 
 SUBJ_NUM = 0; % numeric
-BLOCK = 3; % numeric
+BLOCK = 4; % numeric
 TEST = false; % logical
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -39,9 +39,10 @@ for trial = 1:N_TRIALS
     WaitSecs(2);
     fixation(PTB); % show fixation cross to start trial
     present_target(PTB, target) % show target
+    tic;
 
     % loop through all stim in trial
-    for v = 1:length(path)
+    for v = 1:length(path) 
         rt = present_stimulus(path(v), PTB); % trigger sent here
         correct = check_answer(istarget(v), rt);
         write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), rt, correct);

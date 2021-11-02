@@ -19,11 +19,11 @@ function rt = present_stimulus(stim, ptb)
     
     % play audio
     RTBox('clear'); % clear buffer and sync clocks before stimulus onset
-    stim_start = PsychPortAudio('Start', ptb.pahandle, 1, 0, 1);
+    PsychPortAudio('Start', ptb.pahandle, 1, 0, 1);
 
     % collect response
     timeout = 0.5;
-    rt = RTBox(timeout);
+    [rt, ~] = RTBox('sound', timeout);
     rt = rt - stim_start;
     if numel(rt) > 1 % more than one response
         ind = find(rt>0, 1); % find first actual response

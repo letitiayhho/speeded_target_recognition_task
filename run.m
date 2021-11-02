@@ -42,8 +42,8 @@ for trial = 1:N_TRIALS
     tic;
 
     % loop through all stim in trial
-    DrawFormattedText(ptb.window, 'x', 'center', 'center', 1);
-    Screen('Flip', ptb.window);
+    DrawFormattedText(PTB.window, 'x', 'center', 'center', 1);
+    Screen('Flip', PTB.window);
     for v = 1:length(path) 
         rt = present_stimulus(path(v), PTB); % trigger sent here
         write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), rt);
@@ -52,7 +52,7 @@ for trial = 1:N_TRIALS
             give_feedback(correct, PTB);
         end
     end
-    Screen('Flip', ptb.window);
+    Screen('Flip', PTB.window);
 end
 
 %% end block

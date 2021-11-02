@@ -7,7 +7,6 @@ function init_RTBox(rtbox)
 
     RTBox('UntilTimeout', false); % Open RT box if hasn't
     RTBox('clear');
-    RTBox('enable', 'sound');
     RTBox('DebounceInterval', 0);
     Priority(1); % prioritize timing
     RTBox('TTLWidth', 0.001); % need if sending multiple consecutively

@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%% UPDATE THIS SECTION BEFORE EACH SUBJECT/TEST
 
 SUBJ_NUM = 0; % numeric
-BLOCK = 1; % numeric
+BLOCK = 3; % numeric
 TEST = false; % logical
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -14,7 +14,6 @@ addpath('task/USTCRTBox_003')
 PsychJavaTrouble(1);
 isWindowsAdmin;
 
-% run with psychtoolbox debugger if testing
 if TEST
     RTBOX = false;
 else

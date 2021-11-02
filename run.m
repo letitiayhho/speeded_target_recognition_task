@@ -38,10 +38,12 @@ for trial = 1:N_TRIALS
 
     WaitSecs(2);
     fixation(PTB); % show fixation cross to start trial
-    present_target(PTB, target) % show target
+    present_target(PTB, target); % show target
     tic;
 
     % loop through all stim in trial
+    DrawFormattedText(ptb.window, 'x', 'center', 'center', 1);
+    Screen('Flip', ptb.window);
     for v = 1:length(path) 
         rt = present_stimulus(path(v), PTB); % trigger sent here
         write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), rt);
@@ -50,6 +52,7 @@ for trial = 1:N_TRIALS
             give_feedback(correct, PTB);
         end
     end
+    Screen('Flip', ptb.window);
 end
 
 %% end block

@@ -13,10 +13,6 @@ function rt = present_stimulus(stim, ptb)
     WaitSecs(soa-toc); 
     tic;
     
-    % show accepting response
-    DrawFormattedText(ptb.window, 'x', 'center', 'center', 1);
-    Screen('Flip', ptb.window);
-    
     % play audio
     RTBox('clear'); % clear buffer and sync clocks before stimulus onset
     PsychPortAudio('Start', ptb.pahandle, 1, 0, 1);
@@ -24,7 +20,6 @@ function rt = present_stimulus(stim, ptb)
     % collect response
     timeout = 0.5;
     [rt, ~] = RTBox('sound', timeout);
-    rt = rt - stim_start;
     if numel(rt) > 1 % more than one response
         ind = find(rt>0, 1); % find first actual response
         rt = rt(ind); 
@@ -38,7 +33,6 @@ function rt = present_stimulus(stim, ptb)
     end
 
     % end of accepting response
-    Screen('Flip', ptb.window);
     Priority(0);
 
 end

@@ -1,5 +1,5 @@
-function [secs, file_order] = compute_vowel_duration(subject_dir)
-    paths = dir(fullfile('.', subject_dir, 'all_vowels/*.wav'));
+function [secs, file_order] = compute_vowel_duration()
+    paths = dir(fullfile('..', 'stim', '*', '*.wav'));
     secs = zeros(length(paths), 1);
     file_order = [];
     for i = 1:length(paths)

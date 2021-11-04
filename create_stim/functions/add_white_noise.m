@@ -6,7 +6,7 @@ function add_white_noise()
 
         % add white gaussian noise
         [y, fs] = audioread(filepath);
-        out = awgn(y, 60);
+        out = awgn(y, 40);
 
         % write
         audiowrite(filepath, out, fs)

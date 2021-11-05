@@ -1,3 +1,12 @@
+%% Init RTBox
+RTBox('UntilTimeout', false); % Open RT box if hasn't
+RTBox('clear');
+RTBox('enable', 'sound');
+RTBox('DebounceInterval', 0);
+Priority(1); % prioritize timing
+RTBox('ButtonNames', {'1', '2', '3', '4'})
+
+%% Create square-wave signal with increasing amplitude
 fs = 44100;
 template_tone = repmat([-1*ones(1, 441), ones(1, 441)], 1, 50); % 1 sec 50 hz template tone
 
@@ -7,23 +16,11 @@ for i = 1:length(amplitudes)
 	tone = [tone, template_tone*amplitudes(i)]; % 50 hz square wave
 end
 
+%% Start RTBox recording
+timeout = length(tone)/fs;
+RTBox('sound', timeout);
+
+%% Play tone
 sound(tone, fs)
 
-% fs = 44100;
-% t = repmat(linspace(0,10), 1, 441);
-% % t = linspace(0, 1, 20);
-% x = square(t);
-% % sound(x, fs)
-% 
-% n = length(x);
-% y = fft(x);             % fft
-% f = (0:n-1)*(fs/n);     % frequency range
-% power = abs(y).^2/n;    % power of the DFT
-% 
-% figure(1)
-% % subplot(2, 2, i)
-% plot(f,power)
-% title([subject, '/', vowel])
-% xlim([0 2000])
-% xlabel('Frequency')
-% ylabel('Power')
+

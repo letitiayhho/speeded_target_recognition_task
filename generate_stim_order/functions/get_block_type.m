@@ -1,7 +1,7 @@
-function [vowel_space, blocked, n_trials] = get_block_type(BLOCK)
+function [vowel_space, blocked, talkers, n_trials] = get_block_type(BLOCK)
     talkers = {'A', 'B', 'AB', 'AB', 'X', 'Y', 'XY', 'XY'};
-    vowel_space = ["b", "b", "m", "m", "b", "b", "m", "m"];
-    blocked = ["s", "s", "s", "s", "d", "d", "d", "d"];
+    vowel_space = ["s", "s", "s", "s", "d", "d", "d", "d"];
+    blocked = ["b", "b", "m", "m", "b", "b", "m", "m"];
     
     % Randomize order
     indexes = randperm(8);

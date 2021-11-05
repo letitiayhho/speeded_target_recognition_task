@@ -7,16 +7,41 @@ function [talker_order] = get_talker_order(vowel_space, blocked, talkers, n_tria
     if strcmp(blocked, "b")
         talker_order = repmat(talker, 128, 1);
     elseif strcmp(blocked, "m")
-        for i = 1:n_trials
+        i = 0;
+        while i < n_trials
             talker1 = string(talkers(1));
             talker2 = string(talkers(2));
             sample = repmat([talker1, talker2], 1, 8);
-            talker_order = [talker_order; datasample(sample, 16, 'Replace', false)'];
+            trial = datasample(sample, 16, 'Replace', false)';
+            % Make sure there aren't more than 4 same or different trials in a row
+            if check_repeats(trial)
+                continue
+            end
+            talker_order = [talker_order; trial];
+            i = i + 1;
         end
     elseif strcmp(blocked, "training")
-        mixed_AB = repmat(["A", "B"], 1, 8)';
-        mixed_XY = repmat(["X", "Y"], 1, 8)';
-        talker_order = [repmat("A", 1, 16); repmat("X", 1, 16); mixed_AB;...
-            repmat("Y", 1, 16); mixed_XY; repmat("B", 1, 16)];
+        while true
+            mixed_AB = datasample(["A", "B"], 16)';
+            mixed_XY = datasample(["X", "Y"], 16)';
+            if check_repeats(mixed_AB) && check_repeats(mixed_XY)
+                break
+            end
+        end
+        talker_order = [repmat("A", 1, 16)'; repmat("X", 1, 16)'; mixed_AB;...
+            repmat("Y", 1, 16)'; mixed_XY; repmat("B", 1, 16)'];
+    end
+    
+    function save = check_repeats(seq)
+        for j = 1:length(seq)-4
+            window = j:j+4;
+            counts = groupcounts(seq(window));
+            if sum(counts >= 4) > 0
+                % Generate talker order recursively until condition is met
+                save = false;
+                return
+            end
+        end
+        save = true;
     end
 end

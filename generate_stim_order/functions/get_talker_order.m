@@ -1,21 +1,4 @@
 function [talker_order] = get_talker_order(vowel_space, blocked, talkers, n_trials)
-%     [talkers] = get_block_talkers(vowel_space, blocked);   
-
-%     talker = [];
-%     trial_type = [];
-% 
-    % Generate trial talkers and order
-%     if strcmp(block_type, "training")
-%             talker = ["A", "A"; "A", "B"; "X", "X"; "X", "Y"];
-%             trial_type = ["b"; "m"; "b"; "m"];
-%     else
-%     for i = 1 :round(n_trials/length(talkers))
-%         order = randperm(length(talkers));
-%         talker = [talker; talkers(order, :)]; % select pairing for each trial
-%         trial_type = [trial_type; trial_types(order)];
-%     end
-%     end
-
     talker_order = [];
     vowel_space_order = repmat(vowel_space, 16*8, 1);
     blocked_order = repmat(blocked, 16*8, 1);
@@ -30,19 +13,10 @@ function [talker_order] = get_talker_order(vowel_space, blocked, talkers, n_tria
             sample = repmat([talker1, talker2], 1, 8);
             talker_order = [talker_order; datasample(sample, 16, 'Replace', false)'];
         end
+    elseif strcmp(blocked, "training")
+        mixed_AB = repmat(["A", "B"], 1, 8)';
+        mixed_XY = repmat(["X", "Y"], 1, 8)';
+        talker_order = [repmat("A", 1, 16); repmat("X", 1, 16); mixed_AB;...
+            repmat("Y", 1, 16); mixed_XY; repmat("B", 1, 16)];
     end
-            
-%     for j = 1:n_trials
-% %         if strcmp(trial_type(j), 'b')
-% %             talker_order = [talker_ order; repmat(talker(j, 1), 16, 1)];
-% %         else
-%             while true
-%                 utterances = datasample(talker(j, :), 16)';
-%                 if check_repeats(utterances, 3)
-%                     break
-%                 end
-%             end
-%             talker_order = [talker_order; utterances];
-%         end
-%     end
 end

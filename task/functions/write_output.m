@@ -1,7 +1,11 @@
-function write_output(subject, block, stim, rt)
+function write_output(subject, block, stim, rt, pilot)
 
     % get output filename for this subject and black
-    fpath = fullfile('task', 'output', ['subj', num2str(subject), 'block' num2str(block) '.csv']);
+    if pilot
+        fpath = fullfile('task', 'pilot', ['subj', num2str(subject), 'block', num2str(block), '.csv']);
+    else
+        fpath = fullfile('task', 'output', ['subj', num2str(subject), 'block', num2str(block), '.csv']);
+    end
 
     % create data frame
     row = [stim, table(rt)];

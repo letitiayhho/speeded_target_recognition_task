@@ -2,6 +2,7 @@
 
 SUBJ_NUM = 0; % numeric
 BLOCK = 4; % numeric from 1 to 9, 1 is training block
+PILOT = true;
 TEST = false; % logical
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -46,7 +47,7 @@ for trial = 1:N_TRIALS
     Screen('Flip', PTB.window);
     for v = 1:length(path) 
         rt = present_stimulus(path(v), PTB); % trigger sent here
-        write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), rt);
+        write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), rt, pilot);
         if BLOCK == 1
             correct = check_answer(istarget(v), rt);
             give_feedback(correct, PTB);

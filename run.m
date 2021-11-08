@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%% UPDATE THIS SECTION BEFORE EACH SUBJECT/TEST
 
-SUBJ_NUM = 0; % numeric
+SUBJ_NUM = 2; % numeric
 PILOT = true; % logical
 TEST = false; % logical
 

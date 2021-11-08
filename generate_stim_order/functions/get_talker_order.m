@@ -5,7 +5,7 @@ function [talker_order] = get_talker_order(vowel_space, blocked, talkers, n_tria
 
     % Broadcast talker selection for each trial into each utterance
     if strcmp(blocked, "b")
-        talker_order = repmat(talker, 128, 1);
+        talker_order = repmat(talkers, 128, 1);
     elseif strcmp(blocked, "m")
         i = 0;
         while i < n_trials

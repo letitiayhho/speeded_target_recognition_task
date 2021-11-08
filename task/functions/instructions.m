@@ -2,10 +2,10 @@ function instructions(ptb, block)
     
     if block == 1  
         l = 1:5; % training instructions
-    elseif ismember(block, [2 3 4 5])
+    elseif block == 0
+        l = 7; % end of block
+    else
         l = 6; % instructions before experiment blocks
-    elseif block == 0 
-        l = 7; % end of block   
     end
     
     ListenChar(-1); % disable typing into matlab window

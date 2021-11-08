@@ -1,5 +1,5 @@
 Welcome to experiment block #<block>. There will be eight total 
-experiment blocks. As before, please press any key when you
+experiment blocks. As before, please press any button when you
 hear the target vowel. Please try to respond as quickly
 and accurately as you can. No feedback will be given for
 for your answers.

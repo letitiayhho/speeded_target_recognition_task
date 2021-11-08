@@ -1,7 +1,7 @@
 You will first be shown a target vowel on the screen, and
 then played a series of vowels.
-When you hear the target vowel press any key on the
-response box. 
+Press any button on the response box every time you hear
+the target vowel.
 An "x" symbol will appear on the screen while the vowels
 are playing.
 You will need to listen carefully to each vowel as they

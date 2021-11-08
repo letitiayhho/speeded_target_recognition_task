@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%% UPDATE THIS SECTION BEFORE EACH SUBJECT/TEST
 
 SUBJ_NUM = 0; % numeric
-BLOCK = 4; % numeric from 1 to 9, 1 is training block
-PILOT = true; % logical
+BLOCK = 7; % numeric from 1 to 9, 1 is training block
+PILOT = false; % logical
 TEST = false; % logical
 
 %%%%%%%%%%%%%%%%%%%%%%%

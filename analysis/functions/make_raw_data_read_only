@@ -1,0 +1,4 @@
+#!/bin/bash
+
+chmod 444 raw_data/pilot/*.csv
+chmod 444 raw_data/experiment/*.csv

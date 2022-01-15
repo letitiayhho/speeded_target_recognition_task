@@ -15,7 +15,6 @@ sys.path.append("functions")
 
 import add_rank_to_vowel_filename
 import move_exemplars
-import rename_AH_to_AA
 
 def main() -> None:
     #import pdb
@@ -87,15 +86,15 @@ def main() -> None:
         ]
     )
 
-    print("Adding white noise")
-    subprocess.check_output(
-        [
-            "matlab",
-            "-nodisplay",
-            "-r",
-            "addpath('functions'); run('add_white_noise.m'); quit",
-        ]
-    )
+    #print("Adding white noise")
+    #subprocess.check_output(
+    #    [
+    #        "matlab",
+    #        "-nodisplay",
+    #        "-r",
+    #        "addpath('functions'); run('add_white_noise.m'); quit",
+    #    ]
+    #)
 
     print("Adding rank to vowel filename")
     add_rank_to_vowel_filename.add_rank_to_vowel_filename()

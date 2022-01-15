@@ -1,5 +1,4 @@
 function add_white_noise()
-    cd('/Users/letitiaho/src/speeded_target_recognition_task')
     paths = dir('create_stim/*/modified/*.wav');
     for i = 1
         filepath = fullfile(paths(i).folder, paths(i).name);

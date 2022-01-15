@@ -47,3 +47,15 @@ subj24/modified/IH4_3.wav,../stim/B/IH3.wav
 subj24/modified/OO5_1.wav,../stim/B/OO1.wav
 subj24/modified/OO2_2.wav,../stim/B/OO2.wav
 subj24/modified/OO1_4.wav,../stim/B/OO3.wav
+subj10/modified/AH_1.wav,../stim/M/AA1.wav
+subj10/modified/AH9_2.wav,../stim/M/AA2.wav
+subj10/modified/AH3_3.wav,../stim/M/AA3.wav
+subj10/modified/EH1_1.wav,../stim/M/EH1.wav
+subj10/modified/EH2_2.wav,../stim/M/EH2.wav
+subj10/modified/EH7_3.wav,../stim/M/EH3.wav
+subj10/modified/IH5_1.wav,../stim/M/IH1.wav
+subj10/modified/IH2_2.wav,../stim/M/IH2.wav
+subj10/modified/IH6_3.wav,../stim/M/IH3.wav
+subj10/modified/OO6_1.wav,../stim/M/OO1.wav
+subj10/modified/OO5_2.wav,../stim/M/OO2.wav
+subj10/modified/OO3_3.wav,../stim/M/OO3.wav

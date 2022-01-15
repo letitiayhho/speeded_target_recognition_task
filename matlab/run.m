@@ -1,6 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%% UPDATE THIS SECTION BEFORE EACH SUBJECT/TEST
 
 SUBJ_NUM = 2; % numeric
+VARIATION = "NaN"; % either "NaN", "male", or "exemplar"
 PILOT = true; % logical
 TEST = false; % logical
 
@@ -30,7 +31,7 @@ BLOCKS = 1:9;
 
 for BLOCK = BLOCKS
     % Load stim order
-    [STIM, N_TRIALS] = generate_stim_order(SUBJ_NUM, BLOCK);
+    [STIM, N_TRIALS] = generate_stim_order(SUBJ_NUM, BLOCK, VARIATION);
 
     %% Display instructions
     update_instructions(BLOCK)

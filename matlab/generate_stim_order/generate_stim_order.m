@@ -1,11 +1,17 @@
-function [stim_order, n_trials]  = generate_stim_order(subject_number, block)
+function [stim_order, n_trials]  = generate_stim_order(subject_number, block, variation)
+    arguments
+        subject_number double
+        block double
+        variation {mustBeMember(variation,["male","exemplar","NaN"])} = "NaN"
+    end
+
     addpath('generate_stim_order/functions')
     
     % SET SEET
     rng(subject_number)
     
     % Get block type
-    [vowel_space, blocked, talkers, n_trials] = get_block_type(block); 
+    [vowel_space, blocked, talkers, n_trials] = get_block_type(block, variation); 
     
     % SET SEED to randomize trials within blocks
     seed = str2double(strcat(num2str(subject_number), num2str(block)));
@@ -18,7 +24,7 @@ function [stim_order, n_trials]  = generate_stim_order(subject_number, block)
     [vowel, istarget] = get_vowel_order(n_trials);
     
     % Get exemplar order
-    exemplar = get_exemplar_order(n_trials*16);
+    exemplar = get_exemplar_order(n_trials*16, variation);
 
     % Block 
     block = repmat(block, n_trials*16, 1);

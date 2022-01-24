@@ -11,14 +11,14 @@ function [stim_order, n_trials]  = generate_stim_order(subject_number, block, va
     rng(subject_number)
     
     % Get block type
-    [vowel_space, blocked, talkers, n_trials] = get_block_type(block, variation); 
+    [vowel_space, blocked, talkers, n_trials] = get_block_type(block, variation);
     
     % SET SEED to randomize trials within blocks
     seed = str2double(strcat(num2str(subject_number), num2str(block)));
     rng(seed)
 
     % Get talker order
-    [talker] = get_talker_order(vowel_space, blocked, talkers, n_trials);
+    [talker] = get_talker_order(vowel_space, blocked, talkers, n_trials, variation);
 
     % Get vowel order
     [vowel, istarget] = get_vowel_order(n_trials);

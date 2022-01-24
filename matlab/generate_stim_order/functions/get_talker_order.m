@@ -1,4 +1,12 @@
-function [talker_order] = get_talker_order(vowel_space, blocked, talkers, n_trials)
+function [talker_order] = get_talker_order(vowel_space, blocked, talkers, n_trials, variation)
+    arguments
+        vowel_space string
+        blocked string
+        talkers char
+        n_trials double
+        variation {mustBeMember(variation,["male","exemplar","NaN"])} = "NaN"
+    end
+    
     talker_order = [];
     vowel_space_order = repmat(vowel_space, 16*8, 1);
     blocked_order = repmat(blocked, 16*8, 1);
@@ -21,14 +29,20 @@ function [talker_order] = get_talker_order(vowel_space, blocked, talkers, n_tria
             i = i + 1;
         end
     elseif strcmp(blocked, "training")
+        if strcmp(variation, "male")
+            talker2 = "M";
+        else
+            talker2 = "X";
+        end
+        
         while true
             mixed_AB = datasample(["A", "B"], 16)';
-            mixed_XY = datasample(["X", "Y"], 16)';
+            mixed_XY = datasample([talker2, "Y"], 16)';
             if check_repeats(mixed_AB) && check_repeats(mixed_XY)
                 break
             end
         end
-        talker_order = [repmat("A", 1, 16)'; repmat("X", 1, 16)'; mixed_AB;...
+        talker_order = [repmat("A", 1, 16)'; repmat(talker2, 1, 16)'; mixed_AB;...
             repmat("Y", 1, 16)'; mixed_XY; repmat("B", 1, 16)'];
     end
     

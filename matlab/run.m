@@ -13,7 +13,7 @@ TEST = false; % logical
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %% Set up
-cd('C:\Users\Nusbaum Lab\Desktop\speeded_target_recognition_task')
+cd('C:\Users\Nusbaum Lab\Desktop\speeded_target_recognition_task\matlab')
 addpath('generate_stim_order')
 addpath('task/functions')
 addpath('task/USTCRTBox_003')   

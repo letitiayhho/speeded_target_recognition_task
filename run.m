@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%% UPDATE THIS SECTION BEFORE EACH SUBJECT/TEST
 
-SUBJ_NUM = 2; % numeric
-PILOT = true; % logical
+SUBJ_NUM = 25; % numeric
+PILOT = false; % logical
 TEST = false; % logical
 
 %%%%%%%%%%%%%%%%%%%%%%%

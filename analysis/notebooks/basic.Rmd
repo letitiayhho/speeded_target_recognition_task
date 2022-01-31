@@ -1,0 +1,82 @@
+---
+title: "Speeded target recognition task"
+output: html_notebook
+---
+
+```{r set up, include = FALSE, warning = FALSE, message = FALSE, echo = FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE, error = FALSE}
+setwd("/Users/letitiaho/src/speeded_target_recognition_data_processing/")
+df <- read.csv("intermediate_data/experiment.csv")
+
+# Remove training data
+df <- df[!(df$vowel_space == "training"),]
+
+# Drop subject 15
+df <- df[!(df$subject == 15),]
+```
+
+**Hit rate by vowel space**
+```{r, echo = FALSE, warning = FALSE, message = FALSE, error = FALSE}
+df$response <- !(is.na(df$rt))
+
+hits <- df %>% 
+  group_by(subject, vowel_space, blocked) %>% 
+  summarise(hit_rate = sum((istarget == 1) & response) / sum(istarget == 1),
+            false_alarm = sum((istarget == 0) & response)/sum(istarget == 0))
+
+# Boxplots
+ggplot(hits, aes(x=vowel_space, y=hit_rate, fill=blocked)) + 
+  geom_boxplot() +
+  ggtitle("Figure 1.") + 
+  xlab("Vowel space") +
+  scale_fill_manual(values=c("#c6d3dc", "#6e7173"))
+
+hits <- df %>% 
+  group_by(subject, vowel_space) %>% 
+  summarise(hit_rate = sum((istarget == 1) & response) / sum(istarget == 1),
+            false_alarm = sum((istarget == 0) & response)/sum(istarget == 0))
+
+# Plot individual subjects
+ggplot(hits, aes(x=vowel_space, y=hit_rate, group=subject)) + 
+  geom_point() +
+  geom_line() + 
+  ggtitle("Figure 2.") +
+  xlab("Vowel space") 
+```
+
+**Hit rate by vowel space and target vowel identity**
+```{r, echo = FALSE, warning = FALSE, message = FALSE, error = FALSE}
+hits <- df %>% 
+  group_by(subject, vowel_space, blocked, vowel) %>% 
+  summarise(hit_rate = sum((istarget == 1) & response) / sum(istarget == 1),
+            false_alarm = sum((istarget == 0) & response)/sum(istarget == 0))
+
+# Boxplots
+ggplot(hits, aes(x=vowel_space, y=hit_rate, fill=blocked, color=vowel)) + 
+  geom_boxplot() +
+  ggtitle("Figure 3.") +
+  xlab("Vowel space") +
+  scale_fill_manual(values=c("#c6d3dc", "#6e7173"))
+```
+
+**Reaction times**
+```{r, echo = FALSE, warning = FALSE, message = FALSE, error = FALSE}
+# Keep only rows with RTs
+rts <- df[(!is.na(df$rt)) & (df$istarget == 1),]
+
+# Remove outliers
+rts <- rts[(!rts$rt %in% boxplot.stats(rts$rt)$out),]
+
+# Plot
+rts$paired <- rts$blocked
+ggplot(rts, aes(x=vowel_space, y=rt, fill=paired)) + 
+  geom_boxplot() +
+  ylim(0, 0.6) +
+  ggtitle("Figure 4.") +
+  xlab("Vowel space") +
+  scale_fill_manual(values=c("#c6d3dc", "#6e7173"))
+```

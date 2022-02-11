@@ -1,7 +1,7 @@
 function [vowel_space, blocked, talkers, n_trials] = get_block_type(BLOCK, version)
     arguments
         BLOCK double
-        version {mustBeMember(version,["male","exemplar","NaN"])} = "NaN"
+        version {mustBeMember(version,["male","exemplar","original"])} = "original"
     end
     
     if strcmp(version, "male") % replace X because X has the worst recordings

@@ -4,7 +4,7 @@ function [talker_order] = get_talker_order(vowel_space, blocked, talkers, n_tria
         blocked string
         talkers char
         n_trials double
-        version {mustBeMember(version,["male","exemplar","NaN"])} = "NaN"
+        version {mustBeMember(version,["male","exemplar","original"])} = "original"
     end
     
     talker_order = [];

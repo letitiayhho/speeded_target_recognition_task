@@ -1,7 +1,7 @@
 function exemplar_order = get_exemplar_order(n_utterances, version)
     arguments
         n_utterances double
-        version {mustBeMember(version,["male","exemplar","NaN"])} = "NaN"
+        version {mustBeMember(version,["male","exemplar","original"])} = "original"
     end
 
     if strcmp(version, "exemplar")

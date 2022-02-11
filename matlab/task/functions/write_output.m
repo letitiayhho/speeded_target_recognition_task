@@ -1,8 +1,9 @@
 function write_output(subject, block, stim, rt, pilot, version)
 
     % get output filename for this subject and black
+    filename = ['subj', num2str(subject), 'block', num2str(block), char(version), '.csv'];
     if pilot
-        fpath = fullfile('data', 'pilot', ['subj', num2str(subject), 'block', num2str(block), version, '.csv']);
+        fpath = fullfile('data', 'pilot', filename);
     else
         fpath = fullfile('data', 'experiment', ['subj', num2str(subject), 'block', num2str(block), version, '.csv']);
     end

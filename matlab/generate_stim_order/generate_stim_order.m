@@ -2,7 +2,7 @@ function [stim_order, n_trials]  = generate_stim_order(subject_number, block, ve
     arguments
         subject_number double
         block double
-        version {mustBeMember(version,["male","exemplar","NaN"])} = "NaN"
+        version {mustBeMember(version,["male","exemplar","original"])} = "original"
     end
 
     addpath('generate_stim_order/functions')
@@ -38,7 +38,7 @@ function [stim_order, n_trials]  = generate_stim_order(subject_number, block, ve
     subject = repmat(subject_number, n_trials*16, 1);
     
     % Version
-    version_column = repmat(version, n_traisl*16, 1);
+    version_column = repmat(version, n_trials*16, 1);
 
     % CREATE TABLE
     stim_order = table(subject, block, vowel_space, blocked, trial,...

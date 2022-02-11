@@ -1,11 +1,11 @@
-function write_output(subject, block, stim, rt, pilot, version)
+function write_output(subject, block, version, stim, rt, pilot)
 
     % get output filename for this subject and black
     filename = ['subj', num2str(subject), 'block', num2str(block), char(version), '.csv'];
     if pilot
         fpath = fullfile('data', 'pilot', filename);
     else
-        fpath = fullfile('data', 'experiment', ['subj', num2str(subject), 'block', num2str(block), version, '.csv']);
+        fpath = fullfile('data', 'experiment', filename);
     end
 
     % create data frame
@@ -20,9 +20,7 @@ function write_output(subject, block, stim, rt, pilot, version)
         fprintf(f, row);
         fclose(f);
     else
-        warning('File already exists')
-        fpath = insertBefore(fpath, '.csv', '_1');
-        f = fopen(fpath, 'a');
+        f = fopen(fpath, 'a'); % if file already exists then just append
         fprintf(f, row); 
         fclose(f);
     end

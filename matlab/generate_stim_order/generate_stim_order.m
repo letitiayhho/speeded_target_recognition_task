@@ -38,9 +38,9 @@ function [stim_order, n_trials]  = generate_stim_order(subject_number, block, ve
     subject = repmat(subject_number, n_trials*16, 1);
     
     % Version
-    version_column = repmat(version, n_trials*16, 1);
+    ver = repmat(version, n_trials*16, 1);
 
     % CREATE TABLE
-    stim_order = table(subject, block, vowel_space, blocked, trial,...
-        token, vowel, talker, exemplar, istarget);
+    stim_order = table(subject, block, ver, vowel_space, blocked,...
+        trial, token, vowel, talker, exemplar, istarget);
 end

@@ -54,7 +54,7 @@ for BLOCK = BLOCKS
         for v = 1:length(path) 
             rt = 99;
 %             rt = present_stimulus(path(v), PTB); % trigger sent here
-            write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), rt, PILOT, VERSION);
+            write_output(SUBJ_NUM, BLOCK, VERSION, trial_stim(v,:), rt, PILOT);
 %             if BLOCK == 1
 %                 correct = check_answer(istarget(v), rt);
 %                 give_feedback(correct, PTB);

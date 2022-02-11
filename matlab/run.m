@@ -1,11 +1,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%% UPDATE THIS SECTION BEFORE EACH SUBJECT/TEST
 
-SUBJ_NUM = 2; % numeric
+SUBJ_NUM = 0; % numeric
 VERSION = "NaN"; % either "NaN", "male", or "exemplar"
 PILOT = true; % logical
 TEST = false; % logical
 
 %%%%%%%%%%%%%%%%%%%%%%%
+
+PsychDebugWindowConfiguration
 
 %% Set up
 cd('C:\Users\Nusbaum Lab\Desktop\speeded_target_recognition_task\matlab')
@@ -51,7 +53,7 @@ for BLOCK = BLOCKS
         Screen('Flip', PTB.window);
         for v = 1:length(path) 
             rt = present_stimulus(path(v), PTB); % trigger sent here
-            write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), rt, PILOT);
+            write_output(SUBJ_NUM, BLOCK, trial_stim(v,:), rt, PILOT, VERSION);
             if BLOCK == 1
                 correct = check_answer(istarget(v), rt);
                 give_feedback(correct, PTB);

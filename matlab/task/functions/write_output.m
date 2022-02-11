@@ -1,10 +1,10 @@
-function write_output(subject, block, stim, rt, pilot)
+function write_output(subject, block, stim, rt, pilot, version)
 
     % get output filename for this subject and black
     if pilot
-        fpath = fullfile('task', 'pilot', ['subj', num2str(subject), 'block', num2str(block), '.csv']);
+        fpath = fullfile('data', 'pilot', ['subj', num2str(subject), 'block', num2str(block), version, '.csv']);
     else
-        fpath = fullfile('task', 'output', ['subj', num2str(subject), 'block', num2str(block), '.csv']);
+        fpath = fullfile('data', 'experiment', ['subj', num2str(subject), 'block', num2str(block), version, '.csv']);
     end
 
     % create data frame

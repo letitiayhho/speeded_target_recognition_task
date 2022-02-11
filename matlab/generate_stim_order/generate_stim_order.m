@@ -36,6 +36,9 @@ function [stim_order, n_trials]  = generate_stim_order(subject_number, block, ve
 
     % Subject
     subject = repmat(subject_number, n_trials*16, 1);
+    
+    % Version
+    version_column = repmat(version, n_traisl*16, 1);
 
     % CREATE TABLE
     stim_order = table(subject, block, vowel_space, blocked, trial,...

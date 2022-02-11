@@ -1,10 +1,10 @@
-function [talker_order] = get_talker_order(vowel_space, blocked, talkers, n_trials, variation)
+function [talker_order] = get_talker_order(vowel_space, blocked, talkers, n_trials, version)
     arguments
         vowel_space string
         blocked string
         talkers char
         n_trials double
-        variation {mustBeMember(variation,["male","exemplar","NaN"])} = "NaN"
+        version {mustBeMember(version,["male","exemplar","NaN"])} = "NaN"
     end
     
     talker_order = [];
@@ -29,7 +29,7 @@ function [talker_order] = get_talker_order(vowel_space, blocked, talkers, n_tria
             i = i + 1;
         end
     elseif strcmp(blocked, "training")
-        if strcmp(variation, "male")
+        if strcmp(version, "male")
             talker2 = "M";
         else
             talker2 = "X";

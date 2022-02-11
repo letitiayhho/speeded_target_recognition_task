@@ -1,10 +1,10 @@
-function exemplar_order = get_exemplar_order(n_utterances, variation)
+function exemplar_order = get_exemplar_order(n_utterances, version)
     arguments
         n_utterances double
-        variation {mustBeMember(variation,["male","exemplar","NaN"])} = "NaN"
+        version {mustBeMember(version,["male","exemplar","NaN"])} = "NaN"
     end
 
-    if strcmp(variation, "exemplar")
+    if strcmp(version, "exemplar")
         exemplar_order = ones(n_utterances, 1);
     else
         exemplar_order = [];

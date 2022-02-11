@@ -1,10 +1,10 @@
-function [vowel_space, blocked, talkers, n_trials] = get_block_type(BLOCK, variation)
+function [vowel_space, blocked, talkers, n_trials] = get_block_type(BLOCK, version)
     arguments
         BLOCK double
-        variation {mustBeMember(variation,["male","exemplar","NaN"])} = "NaN"
+        version {mustBeMember(version,["male","exemplar","NaN"])} = "NaN"
     end
     
-    if strcmp(variation, "male") % replace X because X has the worst recordings
+    if strcmp(version, "male") % replace X because X has the worst recordings
         talkers = ["A", "B", "AB", "AB", "M", "Y", "MY", "MY"];
     else
         talkers = ["A", "B", "AB", "AB", "X", "Y", "XY", "XY"];

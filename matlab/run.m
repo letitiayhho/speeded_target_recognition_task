@@ -1,13 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%% UPDATE THIS SECTION BEFORE EACH SUBJECT/TEST
 
-<<<<<<< HEAD:run.m
-SUBJ_NUM = 25; % numeric
-PILOT = false; % logical
-=======
 SUBJ_NUM = 2; % numeric
-VARIATION = "NaN"; % either "NaN", "male", or "exemplar"
+VERSION = "NaN"; % either "NaN", "male", or "exemplar"
 PILOT = true; % logical
->>>>>>> 72e8d53ae0aeb6e01d8a8ed97326f4a7482d33bd:matlab/run.m
 TEST = false; % logical
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -36,7 +31,7 @@ BLOCKS = 1:9;
 
 for BLOCK = BLOCKS
     % Load stim order
-    [STIM, N_TRIALS] = generate_stim_order(SUBJ_NUM, BLOCK, VARIATION);
+    [STIM, N_TRIALS] = generate_stim_order(SUBJ_NUM, BLOCK, VERSION);
 
     %% Display instructions
     update_instructions(BLOCK)
